@@ -1,0 +1,133 @@
+const firebase = require('firebase');
+const { db, admin } = require('../utils/admin');
+
+// Image uploading packages
+const BusBoy = require('busboy');
+const path = require('path');
+const os = require('os');
+const fs = require('fs');
+
+const signup = async (req, res) => {
+  // Export it to a util function
+  if (req.body.email.trim() === '' || req.body.password.trim() === '') {
+    res.status(400).json({
+      msg: `please fill all the required fields`
+    })
+  };
+
+  if (req.body.password !== req.body.confirmPassword) {
+    res.status(400).json({
+      msg: `passwords don't match`
+  })};
+
+  const newUser = {
+    email: req.body.email,
+    password: req.body.password,
+    confirmPassword: req.body.confirmPassword
+  }
+
+  try {
+    let user = await db.doc(`/users/${newUser.email}`).get();
+
+    // Check if user already exists
+    if (user.exists) return res.status(400).json({ msg: 'user already exists'});
+    const data = await firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
+    const token = await data.user.getIdToken();
+
+    // Add user to the users collection
+    const userCredentials = {
+      email: newUser.email,
+      dateCreated: new Date().toISOString(),
+      userId: data.user.uid
+    }
+    await db.collection('users').add(userCredentials);
+
+    return res.status(201).json({
+      msg: 'successfully created user',
+      token
+    })
+  } catch (error) {
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        return res.status(400).json({ msg: `email ${newUser.email} is already in use`});
+      case 'auth/invalid-email':
+        return res.status(400).json({ msg: `invalid email`});
+      default:
+        return res.status(500).json({ msg: 'server error' })
+    }
+  }
+}
+
+const signin = async (req, res) => {
+  if (req.body.email.trim() === '' || req.body.password.trim() === '') {
+    res.status(400).json({
+      msg: `please fill all the required fields`
+    })
+  };
+
+  const user = {
+    email: req.body.email,
+    password: req.body.password
+  };
+
+  try {
+    const data = await firebase.auth().signInWithEmailAndPassword(user.email, user.password);
+    const token = await data.user.getIdToken();
+    res.status(200).json({
+      msg: 'welcome!',
+      token
+    })
+  } catch (error) {
+    console.log(error);
+    switch (error.code) {
+      case 'auth/invalid-email':
+      case 'auth/wrong-password':
+        return res.status(403).json({ msg:'invalid credentials' })
+      default:
+        return res.status(500).json({ msg: 'server error' })
+    }
+  }
+}
+
+let imageFileName;
+let imageToBeUploaded;
+
+const imageUpload = async (req, res) => {
+  const busboy = new BusBoy({ headers: req.headers });
+  busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+    console.log('fieldname', fieldname);
+    console.log('filename', filename);
+    console.log('encoding', encoding);
+    console.log('mimetype', mimetype);
+
+    // TODO Copied from stackoverflow, looks really dumb ill take a look at it later
+    const imageExtension = filename.split('.')[filename.split('.').length - 1];
+    // TODO Copied from stackoverflow, looks really dumb ill take a look at it later
+    const imageFileName = `${Math.round(Math.random() * 10000000)}`
+    const filepath = path.join(os.tmpdir(), imageFileName);
+    imageToBeUploaded = { filepath, mimetype };
+    file.pipe(fs.createWriteStream(filepath));
+  });
+  // HUGE TODOOOOO
+  busboy.on('finish', async () => {
+    const data = await admin.storage().bucket().upload(imageToBeUploaded.filepath, {
+      resumable: false,
+      metadata: {
+        'Content-Type': imageToBeUploaded.mimetype
+      }
+    });
+    // TODO fix it to a config var
+    const imageUrl = `https://firebasestorage.googleapis.com/v0/b/vuut-react-redux.appspot.com/0/${imageFileName}?alt=media`;
+    try {
+      const data = await db.doc(`users/${req.email}`).update({ imageUrl });
+      console.log(data);
+      res.send('cool worked');
+    } catch (error) {
+      res.status(500).json({
+        msg: 'server error'
+      })
+    }
+  })
+}
+
+module.exports = { signup, signin, imageUpload }
