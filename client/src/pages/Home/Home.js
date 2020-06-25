@@ -19,7 +19,7 @@ export default function Home() {
       <Link to='/profile'><img alt='user-avatar' className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU' /></Link>
       {hours &&
       <Fragment>
-        <h1>Home</h1>
+        <h1 className='home-title'>Home</h1>
         <ul className='stats-list box-background'>
           <li className='stats-item'>
             <h1>28</h1>
