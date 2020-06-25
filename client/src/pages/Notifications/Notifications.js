@@ -6,6 +6,7 @@ export default function Notifications() {
     <div>
       <Topbar  />
       <h1>Notifications</h1>
+      <p>Here will be the notifications</p>
     </div>
   )
 }
