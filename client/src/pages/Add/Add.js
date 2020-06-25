@@ -9,8 +9,8 @@ export default function Add() {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(state => state.hours);
-  const { token } = useSelector(state => state.auth);
+  const hoursState = useSelector(state => state.hours);
+  const { token, isAuth, isLoading } = useSelector(state => state.auth);
 
   const handleSubmit = () => {
     const newHour = {
@@ -21,9 +21,10 @@ export default function Add() {
 
   return (
     <div>
-      {isLoading && <Spinner />}
-      {!token && <Redirect to='/' />}
-      {!isLoading && <Fragment>
+      {isLoading || hoursState.isLoading && <Spinner />}
+      {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
+      {!isLoading  &&
+      <Fragment>
         <h1>Add Hours</h1>
         <div className='form-group'>
           <label>Description</label>
