@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addHour } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
+import Topbar from '../../components/Topbar/Topbar';
 
 export default function Add() {
   const [hours, setHours] = useState('');

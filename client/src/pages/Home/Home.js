@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMyHours } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
 import Hour from './components/Hour';
+import Topbar from '../../components/Topbar/Topbar';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -15,8 +16,8 @@ export default function Home() {
 
   return (
     <div>
+      <Topbar backButton='false' />
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
-      <Link to='/profile'><img alt='user-avatar' className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU' /></Link>
       {hours &&
       <Fragment>
         <h1 className='home-title'>Home</h1>

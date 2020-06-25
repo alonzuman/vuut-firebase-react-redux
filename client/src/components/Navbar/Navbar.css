@@ -15,17 +15,24 @@
 
 .nav-item {
   padding: 1rem;
-  font-size: .75rem;
+  font-size: .6rem;
+  width: 100px;
   text-decoration: none;
   color: var(--gray);
   text-align: center;
 }
 
 .nav-item i {
-  font-size: 1rem;
-  margin-bottom: .3rem;
+  font-size: 1.2rem;
+  margin-bottom: .5rem;
 }
 
 .active-nav-item {
   color: var(--primary);
+}
+
+@media (max-height: 810px) {
+  .navbar {
+    padding-bottom: 0;
+  }
 }

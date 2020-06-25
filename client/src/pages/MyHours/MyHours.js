@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMyHours } from '../../actions';
 import Hour from '../Home/components/Hour';
 import Spinner from '../../components/Spinner/Spinner';
+import BackButton from '../../components/BackButton';
+import Topbar from '../../components/Topbar/Topbar';
 
 export default function MyHours() {
   const history = useHistory();
@@ -14,7 +16,7 @@ export default function MyHours() {
 
   return (
     <div>
-      <button className='btn' onClick={() => history.goBack()}>Back</button>
+      <Topbar backButton={true} />
       <h1>My Hours</h1>
       {(myHours && !isLoading) ?
       <ul>{myHours.map(hour => <Hour hour={hour} key={Math.random()} />)}</ul>:

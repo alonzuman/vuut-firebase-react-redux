@@ -1,0 +1,16 @@
+.topbar {
+  padding: .5rem;
+  position: fixed;
+  background-color: white;
+  top: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
+  /* border-bottom: var(--border); */
+}
+
+.topbar-menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

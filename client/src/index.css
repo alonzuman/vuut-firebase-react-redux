@@ -73,3 +73,10 @@ label {
 .btn:hover {
   cursor: pointer;
 }
+
+.back-button {
+  border: none;
+  background-color: transparent;
+  color: var(--primary);
+  margin: 0;
+}
