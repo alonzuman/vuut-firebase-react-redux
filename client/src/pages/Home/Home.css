@@ -14,10 +14,13 @@
 
 .category-title a {
   text-decoration: none;
+  font-size: .9rem;
+  margin-top: .2rem;
   color: var(--primary);
 }
 
 .box-background {
+  background-color: var(--background);
   border: var(--border);
   border-radius: 1rem;
   margin: 1rem 0;
@@ -37,6 +40,11 @@
 .menu-item {
   border-bottom: var(--border);
   padding: 1rem 0;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: var(--app-white);
 }
 
 .menu-item:last-of-type {
