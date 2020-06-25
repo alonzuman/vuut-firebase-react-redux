@@ -1,12 +1,7 @@
 const firebase = require('firebase');
-const { db, admin } = require('../utils/admin');
+const { db } = require('../utils/admin');
 
-// Image uploading packages
-const BusBoy = require('busboy');
-const path = require('path');
-const os = require('os');
-const fs = require('fs');
-
+// Sign up
 const signup = async (req, res) => {
   // Export it to a util function
   if (req.body.email.trim() === '' || req.body.password.trim() === '') {
@@ -58,6 +53,7 @@ const signup = async (req, res) => {
   }
 }
 
+// Sign in
 const signin = async (req, res) => {
   if (req.body.email.trim() === '' || req.body.password.trim() === '') {
     res.status(400).json({
@@ -89,4 +85,10 @@ const signin = async (req, res) => {
   }
 }
 
-module.exports = { signup, signin }
+const loadUser = async (req, res) => {
+  // Get user details from db
+  // console.log(req.headers['auth-token'])
+  res.send('loading user');
+}
+
+module.exports = { signup, signin, loadUser }

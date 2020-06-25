@@ -1,8 +1,10 @@
 const { db, admin } = require('../utils/admin');
+const hoursRef = db.collection('hours');
 
-const getAllHours = async (req, res) => {
+
+const getMyHours = async (req, res) => {
   try {
-    const data = await db.collection('hours').get()
+    const data = await hoursRef.where('userId', '==', req.user.userId).get();
     let hours = [];
     data.forEach(doc => hours.push(doc.data()));
     res.status(200).json(hours);
@@ -15,13 +17,14 @@ const addHour = async (req, res) => {
   const newHour = {
     description: req.body.description,
     hours: req.body.hours,
+    date: req.body.date,
     approved: false,
     userId: req.user.userId,
     dateCreated: admin.firestore.Timestamp.fromDate(new Date())
   };
 
   try {
-    const data = await db.collection('hours').add(newHour);
+    const data = await hoursRef.add(newHour);
     res.status(201).json({
       msg: 'added successfully!',
       id: data.id
@@ -32,4 +35,4 @@ const addHour = async (req, res) => {
   }
 }
 
-module.exports = { getAllHours, addHour };
+module.exports = { getMyHours, addHour };

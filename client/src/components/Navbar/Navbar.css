@@ -1,0 +1,19 @@
+.navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.nav-menu {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.nav-item {
+  padding: 1rem;
+}
+
+.active-nav-item {
+
+}
