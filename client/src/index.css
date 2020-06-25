@@ -93,6 +93,7 @@ label {
 /* BUTTONS */
 input, button:focus {
   outline: none;
+  cursor: pointer;
 }
 
 .btn {
@@ -110,8 +111,7 @@ input, button:focus {
   width: 100%;
 }
 
-.btn:hover {
-  cursor: pointer;
+.btn-primary:hover {
   background-color: var(--primary-hover);
 }
 
