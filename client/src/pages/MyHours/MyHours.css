@@ -2,3 +2,15 @@
   display: flex;
   justify-content: space-between;
 }
+
+.hours-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .hours-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

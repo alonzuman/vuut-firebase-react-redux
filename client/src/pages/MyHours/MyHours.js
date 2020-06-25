@@ -22,7 +22,7 @@ export default function MyHours() {
 
       </div>
       {(myHours && !isLoading) ?
-      <ul>{myHours.map(hour => <Hour isEditing={isEditing} hour={hour} key={Math.random()} />)}</ul>:
+      <ul className='hours-grid'>{myHours.map(hour => <Hour isEditing={isEditing} hour={hour} key={Math.random()} />)}</ul>:
       <Spinner />}
     </div>
   )
