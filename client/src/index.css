@@ -12,6 +12,7 @@
   --green: rgb(48, 209, 88);
   --red: rgb(255, 69, 58);
   --primary: #0a84ff;
+  --primary-hover: #046eda;
   --shadow: 0px 1px 10px #00000015;
   --app-white: white;
   --border: 1px solid #313030;
@@ -90,6 +91,10 @@ label {
 }
 
 /* BUTTONS */
+input, button:focus {
+  outline: none;
+}
+
 .btn {
   font-size: 1rem;
   border-radius: .3rem;
@@ -107,6 +112,7 @@ label {
 
 .btn:hover {
   cursor: pointer;
+  background-color: var(--primary-hover);
 }
 
 .button-icon {
@@ -123,6 +129,10 @@ label {
   text-decoration: none;
   padding-bottom: .3rem;
   color: var(--primary);
+}
+
+.secondary-button:hover {
+  color: var(--primary-hover);
 }
 
 .secondary-button-icon {
