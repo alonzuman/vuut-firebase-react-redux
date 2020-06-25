@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHour } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 export default function Add() {
   const [hours, setHours] = useState('');
@@ -9,6 +10,7 @@ export default function Add() {
   const [date, setDate] = useState('');
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.hours);
+  const { token } = useSelector(state => state.auth);
 
   const handleSubmit = () => {
     const newHour = {
@@ -20,6 +22,7 @@ export default function Add() {
   return (
     <div>
       {isLoading && <Spinner />}
+      {!token && <Redirect to='/' />}
       {!isLoading && <Fragment>
         <h1>Add Hours</h1>
         <div className='form-group'>

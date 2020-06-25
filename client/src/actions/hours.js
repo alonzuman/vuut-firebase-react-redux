@@ -8,7 +8,8 @@ export const addHour = (hours) => async dispatch => {
   try {
     const config = {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
       }
     }
     const res = await axios.post(`/api/hours`, hours, config);
