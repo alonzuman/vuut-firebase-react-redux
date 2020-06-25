@@ -5,8 +5,8 @@
 }
 
 :root {
-  --background-dark: #040404;
-  --background: #111111;
+  --background-dark: #111111;
+  --background: #202020;
   --gray: #989899;
   --orange: rgb(255, 159, 10);
   --green: rgb(48, 209, 88);
@@ -14,7 +14,7 @@
   --primary: #0a84ff;
   --shadow: 0px 1px 10px #00000015;
   --app-white: white;
-  --border: 1px solid #1a1a1a;
+  --border: 1px solid #313030;
 }
 
 .primary {

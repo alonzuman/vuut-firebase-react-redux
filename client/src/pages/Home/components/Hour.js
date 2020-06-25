@@ -10,7 +10,7 @@ export default function Hour({ hour }) {
       </div>
       <div className='hour-footer'>
         <p>Total: {hour.hours}</p>
-        {!hour.approved ? <i className="orange button-icon fas fa-times-circle"></i> : <i className="green button-icon fas fa-check-square"></i>}
+        {!hour.approved ? <i className="orange button-icon fas fa-hourglass"></i> : <i className="green button-icon fas fa-check-square"></i>}
       </div>
     </div>
   )

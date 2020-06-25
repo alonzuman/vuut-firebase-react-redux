@@ -12,6 +12,10 @@
   font-size: 1.3rem;
 }
 
+.hour-header small {
+  text-align: right;
+}
+
 .hour-footer {
   display: flex;
   justify-content: space-between;

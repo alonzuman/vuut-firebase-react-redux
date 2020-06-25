@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setAlert } from './alerts';
 
 export const addHour = (hours) => async dispatch => {
   dispatch({
@@ -13,13 +14,16 @@ export const addHour = (hours) => async dispatch => {
       }
     }
     const res = await axios.post(`/api/hours`, hours, config);
-    dispatch({
-      type: 'HOURS_ADDED',
-      payload: {
-        newHour: res.data
-      }
-    })
     console.log(res.data)
+    if (res.data.msg === 'added successfully!') {
+      dispatch(setAlert({ msg: 'Added successfully!', type: 'success' }));
+      dispatch({
+        type: 'HOURS_ADDED',
+        payload: {
+          newHour: res.data
+        }
+      });
+    };
   } catch (error) {
     // Dispatch alert
   }

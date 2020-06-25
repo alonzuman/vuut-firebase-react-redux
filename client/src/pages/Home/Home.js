@@ -38,10 +38,10 @@ export default function Home() {
         <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'>View All</Link></div>
         <ul className='box-background'>
           <li className='menu-item'>
-            <Link to='/my-hours'><i className="green button-icon fas fa-check-square"></i>Approved</Link>
+            <Link to='/my-hours'><i className="green button-icon fas fa-check"></i>Approved</Link>
           </li>
           <li className='menu-item'>
-            <Link to='/my-hours'><i className="orange button-icon fas fa-times-circle"></i>Pending</Link>
+            <Link to='/my-hours'><i className="orange button-icon fas fa-hourglass"></i>Pending</Link>
           </li>
         </ul>
         <div className='category-title'><h2>Recent</h2></div>

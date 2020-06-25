@@ -10,15 +10,17 @@ import Notifications from './pages/Notifications/Notifications';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
+import Alert from './components/Alert/Alert';
 
 // Redux
 import Profile from './pages/Profile/Profile';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loadUser } from './actions';
 import MyHours from './pages/MyHours/MyHours';
 
 function App() {
   const dispatch = useDispatch();
+  const { isOn, type, msg } = useSelector(state => state.alerts)
 
   useEffect(() => {
     dispatch(loadUser());
@@ -27,6 +29,7 @@ function App() {
   return (
       <Router>
         <Navbar />
+        {isOn && <Alert type={type} msg={msg} />}
         <Switch>
           <div className='container'>
             <Route exact path='/' component={Home} />
