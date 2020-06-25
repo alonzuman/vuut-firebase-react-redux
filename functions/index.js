@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes/index');
 const firebase = require('firebase');
+const cors = require('cors');
 
 const firebaseConfig = {
   apiKey: "AIzaSyD31w6OXeUOsD7yP3z6JQuc123mvdXoNMg",
@@ -17,7 +18,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-
+app.use(cors());
 app.use('/', router);
 
 exports.api = functions.region('europe-west3').https.onRequest(app);

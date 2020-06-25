@@ -89,45 +89,4 @@ const signin = async (req, res) => {
   }
 }
 
-let imageFileName;
-let imageToBeUploaded;
-
-const imageUpload = async (req, res) => {
-  const busboy = new BusBoy({ headers: req.headers });
-  busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-    console.log('fieldname', fieldname);
-    console.log('filename', filename);
-    console.log('encoding', encoding);
-    console.log('mimetype', mimetype);
-
-    // TODO Copied from stackoverflow, looks really dumb ill take a look at it later
-    const imageExtension = filename.split('.')[filename.split('.').length - 1];
-    // TODO Copied from stackoverflow, looks really dumb ill take a look at it later
-    const imageFileName = `${Math.round(Math.random() * 10000000)}`
-    const filepath = path.join(os.tmpdir(), imageFileName);
-    imageToBeUploaded = { filepath, mimetype };
-    file.pipe(fs.createWriteStream(filepath));
-  });
-  // HUGE TODOOOOO
-  busboy.on('finish', async () => {
-    const data = await admin.storage().bucket().upload(imageToBeUploaded.filepath, {
-      resumable: false,
-      metadata: {
-        'Content-Type': imageToBeUploaded.mimetype
-      }
-    });
-    // TODO fix it to a config var
-    const imageUrl = `https://firebasestorage.googleapis.com/v0/b/vuut-react-redux.appspot.com/0/${imageFileName}?alt=media`;
-    try {
-      const data = await db.doc(`users/${req.email}`).update({ imageUrl });
-      console.log(data);
-      res.send('cool worked');
-    } catch (error) {
-      res.status(500).json({
-        msg: 'server error'
-      })
-    }
-  })
-}
-
-module.exports = { signup, signin, imageUpload }
+module.exports = { signup, signin }
