@@ -21,7 +21,8 @@ export default function Add() {
 
   return (
     <div>
-      {isLoading || hoursState.isLoading && <Spinner />}
+      {hoursState.isLoading && <Spinner />}
+      {isLoading && <Spinner />}
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
       {!isLoading  &&
       <Fragment>

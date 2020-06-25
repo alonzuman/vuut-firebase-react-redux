@@ -1,5 +1,5 @@
-import React, { useEffect, Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // Pages
 import SignUp from './pages/Auth/SignUp';
@@ -15,6 +15,7 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './pages/Profile/Profile';
 import { useDispatch } from 'react-redux';
 import { loadUser } from './actions';
+import MyHours from './pages/MyHours/MyHours';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route path='/add' component={Add} />
             <Route path='/notifications' component={Notifications} />
+            <Route path='/my-hours' component={MyHours} />
             <Route path='/profile' component={Profile} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />

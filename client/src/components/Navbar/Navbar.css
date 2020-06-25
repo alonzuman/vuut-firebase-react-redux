@@ -1,9 +1,10 @@
 .navbar {
   position: fixed;
+  border-top: var(--border);
+  background: white;
   bottom: 0;
   width: 100%;
-  padding-bottom: 0;
-  padding-bottom: env(safe-area-inset-bottom, 0);
+  padding-bottom: 1rem;
 }
 
 .nav-menu {
@@ -14,8 +15,17 @@
 
 .nav-item {
   padding: 1rem;
+  font-size: .75rem;
+  text-decoration: none;
+  color: var(--gray);
+  text-align: center;
+}
+
+.nav-item i {
+  font-size: 1rem;
+  margin-bottom: .3rem;
 }
 
 .active-nav-item {
-
+  color: var(--primary);
 }

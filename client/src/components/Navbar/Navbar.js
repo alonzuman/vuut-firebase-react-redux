@@ -11,9 +11,9 @@ export default function Navbar() {
       <ul className='nav-menu'>
         {isAuth && !isLoading &&
         <Fragment>
-          <NavLink activeClassName='active-nav-item' className='nav-item' to='/'>Home</NavLink>
-          <NavLink activeClassName='active-nav-item' className='nav-item' to='/add'>Add Hours</NavLink>
-          <NavLink activeClassName='active-nav-item' className='nav-item' to='/notifications'>Notifications</NavLink>
+          <NavLink activeClassName='active-nav-item' className='nav-item' exact to='/'><i className="fas fa-compass"></i><br />Home</NavLink>
+          <NavLink activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br/>Add Hours</NavLink>
+          <NavLink activeClassName='active-nav-item' className='nav-item' to='/notifications'><i className="fas fa-bell"></i><br/>Notifications</NavLink>
         </Fragment>}
       </ul>
     </div>

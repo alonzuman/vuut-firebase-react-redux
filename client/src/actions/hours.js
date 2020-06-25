@@ -26,6 +26,10 @@ export const addHour = (hours) => async dispatch => {
 }
 
 export const getMyHours = () => async dispatch => {
+  dispatch({
+    type: 'HOURS_LOADING'
+  });
+
   try {
     const config = {
       headers: {
@@ -34,7 +38,10 @@ export const getMyHours = () => async dispatch => {
       }
     }
     const res = await axios.get(`/api/hours`, config)
-    console.log(res.data);
+    dispatch({
+      type: 'HOURS_LOADED',
+      payload: res.data
+    })
   } catch (error) {
     // Dispatch alert
   }

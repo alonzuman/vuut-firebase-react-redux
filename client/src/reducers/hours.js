@@ -22,7 +22,11 @@ export const hoursReducer = (state = initialState, action) => {
       }
     case 'HOURS_LOADED':
       return {
-
+        ...state,
+        isLoading: false,
+        myHours: [
+          ...payload
+        ]
       }
     default: return state;
   }

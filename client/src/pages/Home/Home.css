@@ -1,0 +1,40 @@
+.category-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-title h2 {
+  font-size: 1rem;
+  margin: .2rem 0;
+}
+
+.category-title a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.box-background {
+  border: var(--border);
+  border-radius: 1rem;
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.stats-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stats-item {
+  padding: 1rem;
+  text-align: center;
+}
+
+.menu-item {
+  border-bottom: var(--border);
+  padding: 1rem 0;
+}
+
+.menu-item:last-of-type {
+  border: none;
+}

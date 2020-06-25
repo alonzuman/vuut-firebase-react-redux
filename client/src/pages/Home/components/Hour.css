@@ -1,0 +1,18 @@
+.hour-container {
+  padding: 1rem;
+}
+
+.hour-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .75rem;
+}
+
+.hour-header h1 {
+  font-size: 1.3rem;
+}
+
+.hour-footer {
+  display: flex;
+  justify-content: space-between;
+}

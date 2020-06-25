@@ -6,6 +6,8 @@
 
 :root {
   --border: 1px solid #00000030;
+  --primary: blue;
+  --gray: gray;
 }
 
 li {
@@ -29,7 +31,7 @@ code {
 .container {
   max-width: 1024px;
   padding: 1rem;
-  margin: 36px auto;
+  margin: 36px auto 72px auto;
 }
 
 /* FORMS */
@@ -40,17 +42,15 @@ code {
 .form-control {
   font-size: 1rem;
   padding: .5rem;
+  margin-top: .3rem;
   border-radius: .3rem;
   width: 100%;
   border: var(--border);
 }
 
-.btn {
-  font-size: 1rem;
-  border-radius: .3rem;
-  padding: .5rem;
-  margin: .5rem 0 0 0;
-  border: var(--border);
+
+label {
+  font-size: .75rem;
 }
 
 /* AVATARS */
@@ -58,4 +58,18 @@ code {
   border-radius: 50%;
   width: 32px;
   height: 32px;
+  border: var(--border);
+}
+
+/* BUTTONS */
+.btn {
+  font-size: 1rem;
+  border-radius: .3rem;
+  padding: .5rem;
+  margin: .5rem 0;
+  border: var(--border);
+}
+
+.btn:hover {
+  cursor: pointer;
 }
