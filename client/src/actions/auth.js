@@ -69,7 +69,7 @@ export const signin = (user) => async dispatch => {
     console.log(res.data);
   } catch (error) {
     // Dispatch an alert
-    console.log(error.response.data.msg);
+    console.log(error);
   }
 };
 
