@@ -35,7 +35,7 @@ export default function Home() {
             <p>Approved</p>
           </li>
         </ul>
-        <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'>View All</Link></div>
+        <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'><button className='secondary-button'>View All</button></Link></div>
         <ul className='box-background'>
           <li className='menu-item'>
             <Link to='/my-hours'><i className="green button-icon fas fa-check"></i>Approved</Link>

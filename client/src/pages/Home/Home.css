@@ -8,13 +8,6 @@
   margin: .2rem 0;
 }
 
-.category-title a {
-  text-decoration: none;
-  font-size: .9rem;
-  margin-top: .2rem;
-  color: var(--primary);
-}
-
 .box-background {
   background-color: var(--background);
   border-radius: 1rem;

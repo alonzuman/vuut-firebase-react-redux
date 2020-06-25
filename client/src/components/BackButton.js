@@ -5,6 +5,6 @@ export default function BackButton() {
   const history = useHistory();
 
   return (
-    <button className='btn back-button' onClick={() => history.goBack()}><i class="fas primary back-button-icon fa-chevron-left"></i><span>Back</span></button>
+    <button className='btn secondary-button' onClick={() => history.goBack()}><i className="fas primary secondary-button-icon fa-chevron-left"></i><span>Back</span></button>
   )
 }

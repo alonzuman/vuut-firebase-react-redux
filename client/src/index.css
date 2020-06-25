@@ -110,15 +110,18 @@ label {
   font-size: 1.3rem;
 }
 
-.back-button {
+.secondary-button {
   border: none;
   padding: .5rem;
   background-color: transparent;
   color: var(--primary);
   margin: 0;
+  text-decoration: none;
+  padding-bottom: .3rem;
+  color: var(--primary);
 }
 
-.back-button-icon {
+.secondary-button-icon {
   font-size: 1.2rem;
   margin: 0 .5rem 0 0;
 }

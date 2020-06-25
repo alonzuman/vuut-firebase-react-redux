@@ -18,7 +18,7 @@ export default function Profile() {
       {!isLoading &&
       <Fragment>
         <h1>Profile</h1>
-        <button className='btn back-button' onClick={() => dispatch(logout())}>Log Out</button>
+        <button className='btn secondary-button' onClick={() => dispatch(logout())}>Log Out</button>
       </Fragment>}
     </div>
   )

@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import './MyHours.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getMyHours } from '../../actions';
 import Hour from '../Home/components/Hour';
 import Spinner from '../../components/Spinner/Spinner';
-import BackButton from '../../components/BackButton';
 import Topbar from '../../components/Topbar/Topbar';
 
 export default function MyHours() {
-  const history = useHistory();
   const dispatch = useDispatch();
+  const [isEditing, setIsEditing] = useState(false);
   const { myHours, isLoading } = useSelector(state => state.hours);
 
   useEffect(() => { dispatch(getMyHours()) }, [])
@@ -17,9 +16,13 @@ export default function MyHours() {
   return (
     <div>
       <Topbar backButton={true} />
-      <h1>My Hours</h1>
+      <div className='page-header'>
+        <h1>My Hours</h1>
+        <button onClick={() => setIsEditing(!isEditing)} className='btn secondary-button'>{isEditing ? 'Close' : 'Edit'}</button>
+
+      </div>
       {(myHours && !isLoading) ?
-      <ul>{myHours.map(hour => <Hour hour={hour} key={Math.random()} />)}</ul>:
+      <ul>{myHours.map(hour => <Hour isEditing={isEditing} hour={hour} key={Math.random()} />)}</ul>:
       <Spinner />}
     </div>
   )
