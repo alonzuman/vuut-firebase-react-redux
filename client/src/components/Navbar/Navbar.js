@@ -15,8 +15,6 @@ export default function Navbar() {
           <NavLink activeClassName='active-nav-item' className='nav-item' to='/add'>Add Hours</NavLink>
           <NavLink activeClassName='active-nav-item' className='nav-item' to='/notifications'>Notifications</NavLink>
         </Fragment>}
-        {!isAuth && !isLoading &&
-        <NavLink activeClassName='active-nav-item' className='nav-item' to='/signin'>Sign In</NavLink>}
       </ul>
     </div>
   )
