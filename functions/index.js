@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use('/', router);
 
 exports.api = functions.region('europe-west3').https.onRequest(app);
