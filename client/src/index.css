@@ -11,10 +11,14 @@
   --orange: rgb(255, 159, 10);
   --green: rgb(48, 209, 88);
   --red: rgb(255, 69, 58);
+  --primary: #0a84ff;
   --shadow: 0px 1px 10px #00000015;
   --app-white: white;
-  --primary: #0a84ff;
   --border: 1px solid #1a1a1a;
+}
+
+.primary {
+  color: var(--primary);
 }
 
 .orange {
@@ -98,8 +102,13 @@ label {
 
 .back-button {
   border: none;
-  padding: 1rem .5rem;
+  padding: .5rem;
   background-color: transparent;
   color: var(--primary);
   margin: 0;
+}
+
+.back-button-icon {
+  font-size: 1.2rem;
+  margin: 0 .5rem 0 0;
 }
