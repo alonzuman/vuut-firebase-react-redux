@@ -4,8 +4,12 @@
 }
 
 .category-title h2 {
-  font-size: 1rem;
+  font-size: 1.3rem;
   margin: .2rem 0;
+}
+
+.category-title button {
+  font-size: 1rem;
 }
 
 .box-background {
