@@ -29,6 +29,10 @@
   color: var(--green)
 }
 
+a {
+  color: var(--primary);
+}
+
 li {
   list-style: none;
 }
