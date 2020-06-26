@@ -32,9 +32,9 @@ export default function Add() {
     }
   }
 
-  const handleSelect = e => {
-    setDate(e)
-  }
+  // const handleSelect = e => {
+  //   setDate(e)
+  // }
 
   const inputStyle = {
     backgroundColor: colors.background,
@@ -56,7 +56,9 @@ export default function Add() {
             <div className='flex-form-group'>
               <div className='form-group flex-group'>
                 <label>Date</label>
-                <input style={inputStyle} className='form-control' type='date' value={date} onChange={e => setDate(e.target.value)} />
+                <div>
+                  <input style={inputStyle} className='form-control' type='date' value={date} onChange={e => setDate(e.target.value)} />
+                </div>
                 {/* <DatePicker id='date-picker' style={inputStyle}  className='form-control' selected={date} onSelect={handleSelect} /> */}
               </div>
               <div className='form-group flex-group'>

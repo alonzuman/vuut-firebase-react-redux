@@ -24,14 +24,14 @@ export const themeReducer = (state = initialState, action) => {
       }
     case 'SWITCH_THEME':
       localStorage.setItem('theme', payload);
-      document.body.style = `background-color: ${payload === 'dark' ? '#111111' : 'white'}`
+      document.body.style = `background-color: ${payload === 'dark' ? colors.dark.backgroundDark : colors.light.backgroundDark}`
       return {
         type: payload,
         isLoading: false,
         colors: toggleColors(payload)
       }
     case 'LOAD_THEME':
-      document.body.style = `background-color: ${payload === 'dark' ? '#111111' : 'white'}`
+      document.body.style = `background-color: ${payload === 'dark' ? colors.dark.backgroundDark : colors.light.backgroundDark}`
       return {
         ...state
       }
