@@ -35,4 +35,17 @@ const addHour = async (req, res) => {
   }
 }
 
-module.exports = { getMyHours, addHour };
+const removeHour = async (req, res) => {
+  try {
+    await hoursRef.doc('0J5b5caaLalVdS0AAqhD').delete();
+    res.status(200).json({
+      msg: 'hours deleted'
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: 'server error'
+    })
+  }
+}
+
+module.exports = { getMyHours, addHour, removeHour };

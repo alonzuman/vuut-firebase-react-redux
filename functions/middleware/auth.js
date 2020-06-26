@@ -13,8 +13,10 @@ const auth = async (req, res, next) => {
     } catch (error) {
       switch (error.code) {
         case 'auth/argument-error':
+          console.log(error.code)
           return res.status(403).json({ msg: 'access denied' });
         default:
+          console.log(error.code)
           return res.status(500).json({ msg: 'server error' });
       }
     }

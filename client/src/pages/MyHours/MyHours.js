@@ -11,7 +11,9 @@ export default function MyHours() {
   const [isEditing, setIsEditing] = useState(false);
   const { myHours, isLoading } = useSelector(state => state.hours);
 
-  useEffect(() => { dispatch(getMyHours()) }, [])
+  useEffect(() => {
+    dispatch(getMyHours());
+  }, [])
 
   return (
     <div>

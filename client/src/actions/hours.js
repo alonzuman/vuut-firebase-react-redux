@@ -25,7 +25,10 @@ export const addHour = (hours) => async dispatch => {
       });
     };
   } catch (error) {
-    // Dispatch alert
+    dispatch(setAlert({
+      msg: 'Faild to add, please refresh the page and try again',
+      type: 'danger'
+    }))
   }
 }
 
@@ -41,12 +44,40 @@ export const getMyHours = () => async dispatch => {
         'auth-token': localStorage.getItem('token')
       }
     }
-    const res = await axios.get(`/api/hours`, config)
+    const res = await axios.get(`/api/hours`, config);
     dispatch({
       type: 'HOURS_LOADED',
       payload: res.data
     })
   } catch (error) {
-    // Dispatch alert
+    dispatch(setAlert({
+      msg: 'Faild to load, please refresh the page',
+      type: 'danger'
+    }))
+  }
+}
+
+export const deleteHour = (id) => async dispatch => {
+  dispatch({
+    type: 'HOURS_LOADING'
+  });
+
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
+    }
+    const res = await axios.delete(`/api/hours/${id}`, config);
+    dispatch(setAlert({
+      msg: 'Hours deleted',
+      type: 'success'
+    }))
+  } catch (error) {
+    dispatch(setAlert({
+      msg: 'Failed to delete hours',
+      type: 'danger'
+    }))
   }
 }

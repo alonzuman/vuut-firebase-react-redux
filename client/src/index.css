@@ -34,6 +34,10 @@ a {
   color: var(--primary);
 }
 
+.btn, .fa-trash, button, a:hover {
+  cursor: pointer!important;
+}
+
 li {
   list-style: none;
 }
@@ -93,7 +97,6 @@ label {
 /* BUTTONS */
 input, button:focus {
   outline: none;
-  cursor: pointer;
 }
 
 .btn {
