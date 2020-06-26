@@ -4,10 +4,18 @@ import './Navbar.css';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const { isAuth, isLoading } = useSelector(state => state.auth)
+  const { isAuth, isLoading } = useSelector(state => state.auth);
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
+
+  const navbarStyle = {
+    borderTop: colors.border,
+    backgroundColor: colors.background,
+    boxShadow: colors.shadow
+  }
 
   return (
-    <div className='navbar'>
+    <div style={navbarStyle} className='navbar'>
       <ul className='nav-menu'>
         {isAuth && !isLoading &&
         <Fragment>

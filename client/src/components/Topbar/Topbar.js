@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom';
 import './Topbar.css';
 import BackButton from '../BackButton';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import { useSelector } from 'react-redux';
 
 export default function Topbar({ backButton, themeToggle }) {
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
+
+  const topbarStyle = {
+    backgroundColor: colors.background,
+    boxShadow: colors.shadow,
+    borderBottom: colors.border
+  }
+
   return (
-    <div className='topbar'>
+    <div style={topbarStyle} className='topbar'>
       <ul className='topbar-menu'>
         {themeToggle === true &&
         <li className='topbar-item'>

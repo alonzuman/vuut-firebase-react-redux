@@ -13,7 +13,6 @@
 }
 
 .box-background {
-  background-color: var(--background);
   border-radius: 1rem;
   margin: 1rem 0;
   padding: 0 1rem;
@@ -30,7 +29,6 @@
 }
 
 .menu-item {
-  border-bottom: var(--border);
   padding: 1rem 0;
 }
 
@@ -40,5 +38,5 @@
 }
 
 .menu-item:last-of-type {
-  border: none;
+  border: none!important;
 }

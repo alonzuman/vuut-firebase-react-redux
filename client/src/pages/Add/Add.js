@@ -17,6 +17,8 @@ export default function Add() {
   const hoursState = useSelector(state => state.hours);
   const { token, isAuth, isLoading } = useSelector(state => state.auth);
   const { type } = useSelector(state => state.alerts);
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -32,7 +34,11 @@ export default function Add() {
 
   const handleSelect = e => {
     setDate(e)
-    console.log(e)
+  }
+
+  const inputStyle = {
+    backgroundColor: colors.background,
+    border: colors.border
   }
 
   return (
@@ -45,18 +51,17 @@ export default function Add() {
           <form onSubmit={handleSubmit}>
             <div className='form-group'>
               <label>Description</label>
-              <input className='form-control' type='text' value={description} onChange={e => setDescription(e.target.value)} />
+              <input style={inputStyle} className='form-control' type='text' value={description} onChange={e => setDescription(e.target.value)} />
             </div>
             <div className='flex-form-group'>
               <div className='form-group flex-group'>
                 <label>Date</label>
-                <div>
-                  <DatePicker className='form-control' selected={date} onSelect={handleSelect} />
-                </div>
+                <input style={inputStyle} className='form-control' type='date' value={date} onChange={e => setDate(e.target.value)} />
+                {/* <DatePicker id='date-picker' style={inputStyle}  className='form-control' selected={date} onSelect={handleSelect} /> */}
               </div>
               <div className='form-group flex-group'>
                 <label>Hours</label>
-                <input className='form-control' type='number' value={hours} onChange={e => setHours(e.target.value)} />
+                <input style={inputStyle} className='form-control' type='number' value={hours} onChange={e => setHours(e.target.value)} />
               </div>
             </div>
             <button type='submit' className='btn btn-primary' >Submit</button>

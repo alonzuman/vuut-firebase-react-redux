@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteHour } from '../../../actions';
 import ApprovalPopup from '../../../components/ApprovalPopup/ApprovalPopup';
 import './Hour.css';
 
 export default function Hour({ hour, isEditing }) {
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
   const dispatch = useDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
   const { data, id } = hour;
 
+  const hourStyle = {
+    backgroundColor: colors.boxBackground
+  }
+
   return (
-    <div className='hour-container box-background'>
+    <div style={hourStyle} className='hour-container box-background'>
       {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour(id))} cancel={() => setIsDeleting(false)} />}
       <div className='hour-header'>
         <h1>{data.description}</h1>

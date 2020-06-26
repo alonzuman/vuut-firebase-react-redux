@@ -1,7 +1,5 @@
 .navbar {
   position: fixed;
-  border-top: var(--border);
-  background-color: var(--background);
   bottom: 0;
   box-shadow: var(--shadow);
   width: 100%;

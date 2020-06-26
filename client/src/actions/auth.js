@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { setAuthToken } from '../utils/axiosConfig'
+import { setAlert } from './alerts';
 
 export const loadUser = () => async dispatch => {
   dispatch({
@@ -65,11 +66,15 @@ export const signin = (user) => async dispatch => {
         token: res.data.token
       }
     });
-    // Dispatch an alert
-    console.log(res.data);
+    dispatch(setAlert({
+      msg: 'Welcome!',
+      type: 'success'
+    }))
   } catch (error) {
-    // Dispatch an alert
-    console.log(error);
+    dispatch(setAlert({
+      msg: 'Failed to log in, please try again',
+      type: 'danger'
+    }))
   }
 };
 
@@ -81,7 +86,14 @@ export const logout = () => async dispatch => {
     dispatch({
       type: 'SIGN_OUT'
     })
+    dispatch(setAlert({
+      msg: 'Successfully signed out',
+      type: 'success'
+    }))
   } catch (error) {
-    // Set alert
+    dispatch(setAlert({
+      msg: 'Error, please try again',
+      type: 'danger'
+    }))
   }
 }

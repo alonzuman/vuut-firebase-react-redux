@@ -15,23 +15,40 @@ import Alert from './components/Alert/Alert';
 // Redux
 import Profile from './pages/Profile/Profile';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadUser } from './actions';
+import { loadUser, switchTheme, loadTheme } from './actions';
 import MyHours from './pages/MyHours/MyHours';
 
 function App() {
   const dispatch = useDispatch();
   const { isOn, type, msg } = useSelector(state => state.alerts)
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
 
   useEffect(() => {
     dispatch(loadUser());
   }, [])
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (!theme) {
+      localStorage.setItem('theme', 'dark');
+      dispatch(switchTheme('dark'))
+    } else {
+      dispatch(loadTheme())
+    };
+  }, [])
+
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers,
+  }
 
   return (
       <Router>
         <Navbar />
         {isOn && <Alert type={type} msg={msg} />}
         <Switch>
-          <div className='container'>
+          <div style={containerStyle} className='container'>
             <Route exact path='/' component={Home} />
             <Route path='/add' component={Add} />
             <Route path='/notifications' component={Notifications} />

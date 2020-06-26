@@ -10,9 +10,25 @@ import Topbar from '../../components/Topbar/Topbar';
 export default function Home() {
   const dispatch = useDispatch();
   const { isAuth, isLoading, token } = useSelector(state => state.auth);
+  const theme = useSelector(state => state.theme);
+  const { colors } = theme;
   const hours = useSelector(state => state.hours)
 
   useEffect(() => { dispatch(getMyHours()) }, [])
+
+  const boxStyle = {
+    backgroundColor: colors.boxBackground
+  }
+
+  const menuItemStyle = {
+    backgroundColor: colors.boxBackground,
+    color: colors.text,
+    borderBottom: colors.border
+  }
+
+  const linkColor = {
+    color: colors.text
+  }
 
   return (
     <div>
@@ -21,7 +37,7 @@ export default function Home() {
       {hours &&
       <Fragment>
         <h1 className='home-title'>Home</h1>
-        <ul className='stats-list box-background'>
+        <ul className='stats-list box-background' style={boxStyle}>
           <li className='stats-item'>
             <h1>28</h1>
             <p>Total Hours</p>
@@ -36,12 +52,12 @@ export default function Home() {
           </li>
         </ul>
         <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'><button className='secondary-button'>View All</button></Link></div>
-        <ul className='box-background'>
-          <li className='menu-item'>
-            <Link to='/my-hours'><i className="green button-icon fas fa-check"></i>Approved</Link>
+        <ul className='box-background' style={boxStyle}>
+          <li className='menu-item' style={menuItemStyle}>
+            <Link style={linkColor} to='/my-hours'><i className="green button-icon fas fa-check"></i>Approved</Link>
           </li>
-          <li className='menu-item'>
-            <Link to='/my-hours'><i className="orange button-icon fas fa-hourglass"></i>Pending</Link>
+          <li className='menu-item' style={menuItemStyle}>
+            <Link style={linkColor} to='/my-hours'><i className="orange button-icon fas fa-hourglass"></i>Pending</Link>
           </li>
         </ul>
         <div className='category-title'><h2>Recent</h2></div>
