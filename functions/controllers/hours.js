@@ -1,12 +1,11 @@
 const { db, admin } = require('../utils/admin');
 const hoursRef = db.collection('hours');
 
-
 const getMyHours = async (req, res) => {
   try {
     const data = await hoursRef.where('userId', '==', req.user.userId).get();
     let hours = [];
-    data.forEach(doc => hours.push(doc.data()));
+    data.forEach(doc => hours.push({id: doc.id, data: doc.data()}));
     res.status(200).json(hours);
   } catch (error) {
     res.status(200).json(error);
@@ -37,7 +36,7 @@ const addHour = async (req, res) => {
 
 const removeHour = async (req, res) => {
   try {
-    await hoursRef.doc('0J5b5caaLalVdS0AAqhD').delete();
+    await hoursRef.doc(req.params.id).delete();
     res.status(200).json({
       msg: 'hours deleted'
     });
