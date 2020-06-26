@@ -19,12 +19,13 @@ export default function ToggleSwitch() {
   const iconStyle = {
     color: theme.colors.text,
     fontSize: '1rem',
-    margin: '.7rem .4rem 0 .4rem'
+    margin: '.7rem .4rem 0 .4rem',
   }
 
   const toggleContainer = {
     display: 'flex',
     justifyContent: 'space-between',
+    position: 'relative'
   }
 
   const switchStyle = {
