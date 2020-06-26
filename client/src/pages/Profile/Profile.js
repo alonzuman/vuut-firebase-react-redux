@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
-import { Redirect, useHistory } from 'react-router-dom';
-import BackButton from '../../components/BackButton';
+import { Redirect } from 'react-router-dom';
 import Topbar from '../../components/Topbar/Topbar';
 
 export default function Profile() {

@@ -1,7 +1,9 @@
 import React from 'react';
-import './Alert.css'
+import './Alert.css';
+import { useDispatch } from 'react-redux';
 
 export default function Alert({ msg, type }) {
+  const dispatch = useDispatch();
   const alertColor = () => {
     switch (type) {
       case 'danger':
@@ -13,7 +15,7 @@ export default function Alert({ msg, type }) {
   }
 
   return (
-    <div className='alert-background'>
+    <div onClick={() => dispatch({type: 'CLEAR_ALERT'})} className='alert-background'>
       <div className='alert' style={{ backgroundColor: alertColor() }}>
         <p><b>{msg}</b></p>
       </div>

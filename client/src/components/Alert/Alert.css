@@ -1,5 +1,5 @@
 .alert-background {
-  position: absolute;
+  position: fixed;
   bottom: 100px;
   right: 0;
   left: 0;

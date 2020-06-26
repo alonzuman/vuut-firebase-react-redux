@@ -28,7 +28,8 @@ export const hoursReducer = (state = initialState, action) => {
           ...payload
         ]
       }
-    case 'HOUR_DELETED':
+    case 'HOURS_DELETED':
+      console.log(state.myHours);
       return {
         ...state,
         isLoading: false,
