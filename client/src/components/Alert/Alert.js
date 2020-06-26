@@ -16,9 +16,9 @@ export default function Alert({ msg, type }) {
 
   return (
     <div onClick={() => dispatch({type: 'CLEAR_ALERT'})} className='alert-background'>
-      <div className='alert' style={{ backgroundColor: alertColor() }}>
-        <p><b>{msg}</b></p>
-      </div>
+        <div className='alert' style={{ backgroundColor: alertColor() }}>
+          <p><b>{msg}</b></p>
+        </div>
     </div>
   )
 }

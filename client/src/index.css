@@ -38,6 +38,10 @@ a {
   cursor: pointer!important;
 }
 
+body {
+  animation: transitionIn 1s;
+}
+
 li {
   list-style: none;
 }

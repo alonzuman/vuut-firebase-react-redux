@@ -13,4 +13,9 @@
   font-size: 1rem;
   line-height: 1.4rem;
   border-radius: .5rem;
+  animation: transitionIn 2s;
+}
+
+.opacity {
+  opacity: .5;
 }
