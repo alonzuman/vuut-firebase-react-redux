@@ -16,12 +16,29 @@ export default function ToggleSwitch() {
     }
   }
 
+  const iconStyle = {
+    color: theme.colors.text,
+    fontSize: '1rem',
+    margin: '.7rem .4rem 0 .4rem'
+  }
+
+  const toggleContainer = {
+    display: 'flex',
+    justifyContent: 'space-between',
+  }
+
+  const switchStyle = {
+    // position: 'absolute'
+  }
+
   return (
-    <div>
-      <label className="switch">
+    <div style={toggleContainer}>
+      <i style={iconStyle} className="fas fa-sun"></i>
+      <label style={switchStyle} className="switch">
         <input onChange={toggleTheme} checked={theme.type === 'dark'} type="checkbox" />
         <span  className="slider round"></span>
       </label>
+      <i style={iconStyle} className="fas fa-moon"></i>
     </div>
   )
 }
