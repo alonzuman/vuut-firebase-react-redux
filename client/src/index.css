@@ -134,11 +134,16 @@ input, button:focus {
   color: var(--primary);
 }
 
-.secondary-button:hover {
+.fa-chevron-left:hover {
   color: var(--primary-hover);
 }
+
 
 .secondary-button-icon {
   font-size: 1.2rem;
   margin: 0 .5rem 0 0;
+}
+
+.secondary-button:hover {
+  color: var(--primary-hover);
 }

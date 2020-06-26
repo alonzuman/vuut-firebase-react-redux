@@ -28,6 +28,12 @@ export const hoursReducer = (state = initialState, action) => {
           ...payload
         ]
       }
+    case 'HOUR_DELETED':
+      return {
+        ...state,
+        isLoading: false,
+        myHours: state.myHours.filter(hour => hour.id !== payload)
+      }
     default: return state;
   }
 }

@@ -7,20 +7,20 @@ import './Hour.css';
 export default function Hour({ hour, isEditing }) {
   const dispatch = useDispatch();
   const [isDeleting, setIsDeleting] = useState(false);
-  console.log(hour);
+  const { data, id } = hour;
 
   return (
     <div className='hour-container box-background'>
-      {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour(hour.id))} cancel={() => setIsDeleting(false)} />}
+      {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour(id))} cancel={() => setIsDeleting(false)} />}
       <div className='hour-header'>
-        <h1>{hour.description}</h1>
-        <small>{hour.date}</small>
+        <h1>{data.description}</h1>
+        <small>{data.date}</small>
       </div>
       <div className='hour-footer'>
-        <p>Total: {hour.hours}</p>
+        <p>Total: {data.hours}</p>
         {isEditing ?
           <i onClick={() => setIsDeleting(true)} style={{ color: 'rgb(255, 69, 58)', fontSize: '1.3rem'}} className="fas fa-trash"></i>:
-        !hour.approved ? <i className="orange button-icon fas fa-hourglass"></i> : <i className="green button-icon fas fa-check-square"></i>}
+        !data.approved ? <i className="orange button-icon fas fa-hourglass"></i> : <i className="green button-icon fas fa-check-square"></i>}
       </div>
     </div>
   )

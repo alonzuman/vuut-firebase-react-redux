@@ -69,7 +69,11 @@ export const deleteHour = (id) => async dispatch => {
         'auth-token': localStorage.getItem('token')
       }
     }
-    const res = await axios.delete(`/api/hours/${id}`, config);
+    await axios.delete(`/api/hours/${id}`, config);
+    dispatch({
+      type: 'HOURS_DELETED',
+      payload: id
+    })
     dispatch(setAlert({
       msg: 'Hours deleted',
       type: 'success'
