@@ -1,5 +1,6 @@
 const { db, admin } = require('../utils/admin');
 const hoursRef = db.collection('hours');
+const usersRef = db.collection('users');
 
 const getMyHours = async (req, res) => {
   try {
@@ -15,7 +16,7 @@ const getMyHours = async (req, res) => {
 const addHour = async (req, res) => {
   const newHour = {
     description: req.body.description,
-    hours: req.body.hours,
+    hours: parseInt(req.body.hours),
     date: req.body.date,
     approved: false,
     user: {
@@ -30,6 +31,9 @@ const addHour = async (req, res) => {
   if (req.user.isApproved === true || req.user.isAdmin === true) {
     try {
       const data = await hoursRef.add(newHour);
+      await usersRef.doc(req.user.id).update({
+        pending: parseInt(req.user.pending) + parseInt(newHour.hours)
+      })
       res.status(201).json({
         msg: 'added successfully!',
         id: data.id
@@ -45,7 +49,12 @@ const addHour = async (req, res) => {
 
 const removeHour = async (req, res) => {
   try {
+    const response = await hoursRef.doc(req.params.id).get();
+    const { hours } = response.data()
     await hoursRef.doc(req.params.id).delete();
+    await usersRef.doc(req.user.id).update({
+      pending: parseInt(req.user.pending) - parseInt(hours)
+    })
     res.status(200).json({
       msg: 'hours deleted'
     });

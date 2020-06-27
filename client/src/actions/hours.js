@@ -1,6 +1,22 @@
 import axios from 'axios';
 import { setAlert } from './alerts';
 
+export const getHomePage = (id) => async dispatch => {
+  dispatch({
+    type: 'HOURS_LOADING'
+  })
+
+  try {
+    const res = await axios.get(`/api/users/${id}/stats`);
+    console.log(res.data)
+  } catch (error) {
+    dispatch(setAlert({
+      msg: 'Failed to load, please refresh the page',
+      type: 'danger'
+    }))
+  }
+}
+
 export const addHour = (hour) => async dispatch => {
   dispatch({
     type: 'HOURS_LOADING'
@@ -78,7 +94,7 @@ export const getMyHours = () => async dispatch => {
   }
 }
 
-export const deleteHour = (id) => async dispatch => {
+export const deleteHour = ({ id, hours }) => async dispatch => {
   dispatch({
     type: 'HOURS_LOADING'
   });
@@ -90,6 +106,7 @@ export const deleteHour = (id) => async dispatch => {
         'auth-token': localStorage.getItem('token')
       }
     }
+
     await axios.delete(`/api/hours/${id}`, config);
     dispatch({
       type: 'HOURS_DELETED',

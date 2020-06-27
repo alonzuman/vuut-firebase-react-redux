@@ -21,7 +21,7 @@ export default function Navbar() {
           <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/'><i className="fas fa-compass"></i><br /><small>Home</small></NavLink>
           <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br /><small>Add Hours</small></NavLink>
           {/* <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/notifications'><i className="fas fa-bell"></i><br /><small>Notifications</small></NavLink> */}
-          {isAdmin && <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/admin'><i className="fas fa-user-circle"></i><br /><small>Admin</small></NavLink>}
+          {isAdmin && isAuth && <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/admin'><i className="fas fa-user-circle"></i><br /><small>Admin</small></NavLink>}
         </Fragment>}
       </ul>
     </div>

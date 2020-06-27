@@ -46,7 +46,8 @@ export const signup = (user) => async dispatch => {
         user: res.data.user
       }
     })
-    // Dispatch alert
+    dispatch(setAlert({ msg: 'Signed up successfully', type: 'success' }));
+    dispatch(loadUser());
   } catch (error) {
     dispatch(setAlert({ msg: 'Failed to signup, please try again', type: 'danger'}))
   }
@@ -69,7 +70,6 @@ export const signin = (user) => async dispatch => {
       msg: 'Welcome!',
       type: 'success'
     }));
-    dispatch(loadUser())
   } catch (error) {
     dispatch(setAlert({
       msg: 'Failed to log in, please try again',

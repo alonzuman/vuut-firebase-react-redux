@@ -9,6 +9,7 @@ const auth = async (req, res, next) => {
       const data = await admin.auth().verifyIdToken(idToken);
       const dbUser = await admin.firestore().collection('users').where('userId', '==', data.uid).limit(1).get();
       req.user = dbUser.docs[0].data();
+      req.user.id = dbUser.docs[0].id;
       next();
     } catch (error) {
       switch (error.code) {

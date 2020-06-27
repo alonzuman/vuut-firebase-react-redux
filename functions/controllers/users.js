@@ -1,5 +1,6 @@
 const firebase = require('firebase');
 const { db } = require('../utils/admin');
+const usersRef = db.collection('users');
 
 // Sign up
 const signup = async (req, res) => {
@@ -52,6 +53,7 @@ const signup = async (req, res) => {
       token
     })
   } catch (error) {
+    console.log(error);
     switch (error.code) {
       case 'auth/email-already-in-use':
         return res.status(400).json({ msg: `email ${newUser.email} is already in use`});
@@ -98,8 +100,22 @@ const signin = async (req, res) => {
 
 const loadUser = async (req, res) => {
   try {
+    const hours = await db.collection('hours').where('user.id', '==', req.user.userId).get();
+    let total = 0;
+    let hoursArr = []
+    hours.forEach(doc => {
+      const data = doc.data();
+      if (data.approved) {
+        hoursArr.push(parseInt(data.hours));
+      }
+    });
+    total = hoursArr.reduce((a, b) => a + b, 0)
+
+    // update total on each load
+
     res.status(200).json(req.user);
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       msg: 'failed to load user'
     })
