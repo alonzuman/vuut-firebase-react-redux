@@ -1,6 +1,16 @@
 const { db, admin } = require('../utils/admin');
 const hoursRef = db.collection('hours');
 
+const getLatestHour = async (req, res) => {
+  try {
+    const first = await hoursRef.where('userId', '==', 'NTZ6iXGsVST2V9j5pvAgUvcGcPl1').orderBy('dateCreated').limit(1).get()
+    console.log(first);
+    res.send('getting latest');
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
+
 const getMyHours = async (req, res) => {
   try {
     const data = await hoursRef.where('userId', '==', req.user.userId).get();
@@ -8,7 +18,7 @@ const getMyHours = async (req, res) => {
     data.forEach(doc => hours.push({id: doc.id, data: doc.data()}));
     res.status(200).json(hours);
   } catch (error) {
-    res.status(200).json(error);
+    res.status(500).json(error);
   }
 }
 
@@ -47,4 +57,4 @@ const removeHour = async (req, res) => {
   }
 }
 
-module.exports = { getMyHours, addHour, removeHour };
+module.exports = { getMyHours, addHour, removeHour, getLatestHour };
