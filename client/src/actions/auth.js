@@ -39,7 +39,6 @@ export const signup = (user) => async dispatch => {
     }
 
     const res = await axios.post('/api/signup', user, config)
-    console.log(res.data);
     dispatch({
       type: 'SIGN_UP_SUCCESS',
       payload: {
@@ -69,7 +68,8 @@ export const signin = (user) => async dispatch => {
     dispatch(setAlert({
       msg: 'Welcome!',
       type: 'success'
-    }))
+    }));
+    dispatch(loadUser())
   } catch (error) {
     dispatch(setAlert({
       msg: 'Failed to log in, please try again',

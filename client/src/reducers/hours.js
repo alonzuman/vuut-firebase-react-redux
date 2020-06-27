@@ -1,7 +1,7 @@
 const initialState = {
-  approved: 0,
-  pending: 0,
-  total: 0,
+  approved: null,
+  pending: null,
+  total: null,
   myHours: [],
   isLoading: false
 }

@@ -1,4 +1,5 @@
-const { db, admin } = require('../utils/admin');
+const { db } = require('../utils/admin');
+const hoursRef = db.collection('hours');
 
 const getAllHours = async (req, res) => {
   if (req.user.isAdmin) {
@@ -18,11 +19,33 @@ const getAllHours = async (req, res) => {
 }
 
 const approveHour = async (req, res) => {
-  res.send('approving hour')
+  const id = req.params.id;
+  try {
+    // TOOD if already approved/unapproved
+    await hoursRef.doc(id).update({ approved: true });
+    res.status(201).json({
+      msg: `document ${id} approved`
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: 'server error'
+    })
+  }
 }
 
 const unapproveHour = async (req, res) => {
-  res.send('unapproving hour')
+  const id = req.params.id;
+  try {
+    // TOOD if already approved/unapproved
+    await hoursRef.doc(id).update({ approved: false });
+    res.status(201).json({
+      msg: `document ${id} unapproved`
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: 'server error'
+    })
+  }
 }
 
 module.exports = { getAllHours, approveHour, unapproveHour }

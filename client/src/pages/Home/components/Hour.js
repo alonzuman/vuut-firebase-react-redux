@@ -18,7 +18,7 @@ export default function Hour({ hour, isEditing }) {
   return (
     <Fragment>
       {!hour && <Spinner />}
-      {hour && <div style={hourStyle} className='hour-container box-background'>
+      {hour.data && <div style={hourStyle} className='hour-container box-background'>
         {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour(hour.id))} cancel={() => setIsDeleting(false)} />}
         <div className='hour-header'>
           <h1>{hour.data.description}</h1>

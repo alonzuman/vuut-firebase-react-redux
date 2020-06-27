@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react';
 import './AdminHourCard.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../../../../components/Spinner/Spinner';
+import { approveHour, unapproveHour } from '../../../../actions/admin';
 
-export default function AdminHourCard({ details }) {
+export default function AdminHourCard({ details, id }) {
+  const dispatch = useDispatch();
   const [isApproved, setIsApproved] = useState(details.approved)
   const { colors } = useSelector(state => state.theme)
 
@@ -13,6 +15,16 @@ export default function AdminHourCard({ details }) {
 
   const boxStyle = {
     backgroundColor: colors.boxBackground
+  }
+
+  const handleApprove = () => {
+    setIsApproved(!isApproved);
+    dispatch(approveHour(id, details.hours))
+  }
+
+  const handleUnapprove = () => {
+    setIsApproved(!isApproved);
+    dispatch(unapproveHour(id, details.hours))
   }
 
   return (
@@ -32,10 +44,11 @@ export default function AdminHourCard({ details }) {
         </div>
         <div className='admin-card-footer'>
           {!isApproved ?
-          <button className='btn btn-primary' onClick={() => setIsApproved(!isApproved)}>Approve</button >:
-          <button style={{width: '100%', margin: '.5rem 0'}} className='btn secondary-button' onClick={() => setIsApproved(!isApproved)}>Decline</button>}
+          <button className='btn btn-primary' onClick={handleApprove}>Approve</button >:
+          <button style={{width: '100%', margin: '.5rem 0', height: '34px'}} className='btn secondary-button' onClick={handleUnapprove}>Decline</button>}
         </div>
-      </div>: <Spinner padding={true} />}
+      </div>:
+      <Spinner padding={true} />}
     </Fragment>
   )
 }

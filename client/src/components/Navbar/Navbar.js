@@ -11,7 +11,7 @@ export default function Navbar() {
   const navbarStyle = {
     borderTop: colors.border,
     backgroundColor: colors.background,
-    boxShadow: colors.shadow
+    boxShadow: colors.shadow,
   }
 
   return (

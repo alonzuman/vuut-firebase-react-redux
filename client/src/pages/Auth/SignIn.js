@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { signin } from '../../actions';
+import { signin, loadUser } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
 import { Link, Redirect } from 'react-router-dom';
 

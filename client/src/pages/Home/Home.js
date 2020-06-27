@@ -42,31 +42,31 @@ export default function Home() {
           {!isLoading &&
           <Fragment>
             <li className='stats-item'>
-              <h1>{hours.total}</h1>
+              <h1>{hours.approved} / 100</h1>
               <p className='stats-label'>Total Hours</p>
             </li>
             <li className='stats-item'>
               <h1>{hours.pending}</h1>
               <p className='stats-label'>Pending</p>
             </li>
-            <li className='stats-item'>
-              <h1>{hours.approved}</h1>
-              <p className='stats-label'>Approved</p>
-            </li>
           </Fragment>}
         </ul>
         <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'><button className='secondary-button'>View All</button></Link></div>
-        <ul className='box-background' style={boxStyle}>
+        {isLoading && !hours.approved && !hours.pending && <div className='box-background' style={boxStyle}><Spinner padding={true} /></div>}
+        {!isLoading && <ul className='box-background' style={boxStyle}>
           <li className='menu-item' style={menuItemStyle}>
-            <Link style={linkColor} to='/my-hours'><i className="green button-icon fas fa-check"></i>Approved</Link>
+            <Link className='menu-bar' style={linkColor} to='/my-hours'><div><i className="green button-icon fas fa-check"></i>Approved </div><span>{hours.approved}</span></Link>
           </li>
           <li className='menu-item' style={menuItemStyle}>
-            <Link style={linkColor} to='/my-hours'><i className="orange button-icon fas fa-hourglass"></i>Pending</Link>
+            <Link className='menu-bar' style={linkColor} to='/my-hours'><div><i className="orange button-icon fas fa-hourglass"></i>Pending </div><span>{hours.pending}</span></Link>
           </li>
-        </ul>
+        </ul>}
         <div className='category-title'><h2>Recent</h2></div>
         <ul>
-          {!hours.myHours[0] ? <div style={boxStyle} className='box-background'><Spinner padding={true} /></div> : <Hour hour={hours.myHours[0]} />}
+          {!isLoading && hours.length === 0 && <h1>hi</h1>}
+          {isLoading && <div style={boxStyle} className='box-background'><Spinner padding={true}/></div>}
+          {!isLoading && !hours.myHours[0] && <div style={boxStyle} className='box-background'><p style={{ padding: '1rem' }}>No hours yet, <Link to='/add'>list your first hours</Link></p></div>}
+          {!isLoading && hours.myHours[0] && <Hour hour={hours.myHours[0]} />}
         </ul>
       </Fragment>}
     </div>

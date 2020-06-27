@@ -24,8 +24,6 @@ const signup = async (req, res) => {
     avatar: req.body.avatar
   }
 
-  console.log(newUser)
-
   try {
     let user = await db.doc(`/users/${newUser.email}`).get();
 
@@ -40,6 +38,7 @@ const signup = async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       avatar: req.body.avatar || '',
+      organization: 'Shaldag',
       isAdmin: false,
       dateCreated: new Date().toISOString(),
       userId: data.user.uid
@@ -87,6 +86,7 @@ const signin = async (req, res) => {
     console.log(error);
     switch (error.code) {
       case 'auth/invalid-email':
+      case 'uth/user-not-found':
       case 'auth/wrong-password':
         return res.status(403).json({ msg:'invalid credentials' })
       default:

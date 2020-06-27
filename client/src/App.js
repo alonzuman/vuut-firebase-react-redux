@@ -23,6 +23,7 @@ import AllHours from './pages/Admin/pages/AllHours';
 function App() {
   const dispatch = useDispatch();
   const { isOn, type, msg } = useSelector(state => state.alerts)
+  const { token } = useSelector(state => state.auth)
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -47,7 +48,7 @@ function App() {
 
   return (
       <Router>
-        <Navbar />
+        {token && <Navbar />}
         {isOn && <Alert type={type} msg={msg} />}
         <Switch>
           <div style={containerStyle} className='container'>

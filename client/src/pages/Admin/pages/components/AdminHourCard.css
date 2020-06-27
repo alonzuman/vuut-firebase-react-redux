@@ -1,6 +1,10 @@
 .admin-card-container {
-  padding: 1rem;
+  padding: .7rem 1rem;
   margin: 0;
+}
+
+.name-and-avatar {
+  text-align: center;
 }
 
 .admin-card-header {

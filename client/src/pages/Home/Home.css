@@ -20,7 +20,7 @@
 
 .stats-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .stats-item {
@@ -39,4 +39,9 @@
 
 .menu-item:last-of-type {
   border: none!important;
+}
+
+.menu-bar {
+  display: flex;
+  justify-content: space-between;
 }

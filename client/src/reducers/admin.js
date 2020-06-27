@@ -1,8 +1,7 @@
 const initialState = {
   isLoading: false,
-  total: 0,
-  approved: 0,
-  pending: 0,
+  total: null,
+  pending: null,
   allHours: []
 }
 
@@ -19,7 +18,23 @@ export const adminReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        allHours: payload
+        allHours: payload.hours,
+        pending: payload.pending,
+        total: payload.total
+      }
+    case 'APPROVE_HOUR':
+      return {
+        ...state,
+        pending: payload.pending,
+        total: payload.total,
+        isLoading: false
+      }
+    case 'UNAPPROVE_HOUR':
+      return {
+        ...state,
+        pending: payload.pending,
+        total: payload.total,
+        isLoading: false,
       }
     default: return state;
   }

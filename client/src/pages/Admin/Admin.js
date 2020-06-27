@@ -8,11 +8,11 @@ import { getAllHours } from '../../actions';
 export default function Admin() {
   const dispatch = useDispatch();
   const { colors } = useSelector(state => state.theme)
-  const { isAdmin, isLoading } = useSelector(state => state.auth)
-  const { total, approved, pending, allHours } = useSelector(state => state.admin)
+  const { isAdmin } = useSelector(state => state.auth)
+  const { total, isLoading , pending, allHours } = useSelector(state => state.admin)
 
   const boxStyle = {
-    backgroundColor: colors.boxBackground
+    backgroundColor: colors.boxBackground,
   }
 
   useEffect(() => {
@@ -24,26 +24,22 @@ export default function Admin() {
       <Topbar themeToggle={true}/>
       <h1 className='home-title'>Admin Page</h1>
       {!isLoading && !isAdmin && !allHours && <Redirect to='/' />}
-      {isLoading ? <Spinner /> :
       <Fragment>
         <ul className='stats-list box-background' style={boxStyle}>
-            <Fragment>
+            {!total && !pending && <Spinner />}
+            {total && pending && <Fragment>
               <li className='stats-item'>
-                <h1 style={{fontSize: '1.4rem', marginBottom: '.3rem'}}>{total}</h1>
+                <h1>{total}</h1>
                 <p className='stats-label'>Total Hours</p>
               </li>
               <li className='stats-item'>
-                <h1 style={{fontSize: '1.4rem', marginBottom: '.3rem'}}>{pending}</h1>
+                <h1>{pending}</h1>
                 <p className='stats-label'>Pending</p>
               </li>
-              <li className='stats-item'>
-                <h1 style={{fontSize: '1.4rem', marginBottom: '.3rem'}}>{approved}</h1>
-                <p className='stats-label'>Approved</p>
-              </li>
-            </Fragment>
+            </Fragment>}
         </ul>
         <div className='category-title'><h2>All Hours</h2><Link to='/admin/all-hours'><button className='secondary-button'>View All</button></Link></div>
-      </Fragment>}
+      </Fragment>
     </div>
   )
 }

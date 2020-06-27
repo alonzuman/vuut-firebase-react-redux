@@ -17,7 +17,7 @@ export default function AllHours() {
       <h1>All Hours</h1>
       <ul className='hours-grid' style={{marginTop: '1rem'}}>
         <Fragment>
-          {allHours ? allHours.map(hour => <AdminHourCard details={hour.details} key={hour.id} />) : <Spinner padding={true}/>}
+          {allHours ? allHours.map(hour => <AdminHourCard details={hour.details} id={hour.id} key={hour.id} />) : <Spinner padding={true}/>}
         </Fragment>
       </ul>
     </div>

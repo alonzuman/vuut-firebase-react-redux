@@ -44,8 +44,8 @@ export default function ToggleSwitch() {
       <label style={switchStyle} className="switch">
         <input onChange={toggleTheme} checked={theme.type === 'dark'} type="checkbox" />
         <span style={sliderStyle} className="slider round"></span>
-        <i style={iconStyle} className={`fas fa-moon ${theme.type === 'dark' ? '' : 'hide'}`}></i>
-        <i style={iconStyle} className={`fas fa-sun ${theme.type === 'light' ? '' : 'hide'}`}></i>
+        <i style={iconStyle} className={`fas fa-moon ${theme.type === 'dark' ? 'show' : 'hide'}`}></i>
+        <i style={iconStyle} className={`fas fa-sun ${theme.type === 'light' ? 'show' : 'hide'}`}></i>
       </label>
     </div>
   )
