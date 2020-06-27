@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <div style={navbarStyle} className='navbar'>
       <ul className='nav-menu'>
-        {!isLoading &&
+        {!isLoading && isAuth &&
         <Fragment>
           <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/'><i className="fas fa-compass"></i><br /><small>Home</small></NavLink>
           <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br /><small>Add Hours</small></NavLink>

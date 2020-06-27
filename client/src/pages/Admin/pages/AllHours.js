@@ -17,7 +17,7 @@ export default function AllHours() {
   return (
     <div>
       <Topbar avatar={true}  backButton={true} />
-      {!auth.isLoading && !isAuth && !isAdmin && <Redirect to='/signin' />}
+      {!auth.isLoading && !isAdmin && <Redirect to='/signin' />}
       <h1>All Hours</h1>
       <ul className='hours-grid' style={{marginTop: '1rem'}}>
         {isLoading && <Spinner />}

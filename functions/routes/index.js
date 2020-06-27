@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getMyHours, addHour, removeHour } = require('../controllers/hours');
 const { signup, signin, loadUser } = require('../controllers/users');
-const { getAllHours, approveHour, unapproveHour } = require('../controllers/admins');
+const { getAllHours, getUnapprovedUsers, approveHour, unapproveHour, unapproveUser, approveUser } = require('../controllers/admins');
 const auth = require('../middleware/auth');
 
 // Hours
@@ -19,7 +19,10 @@ router.post('/signup', signup)
 // TODO
 // Admin routes
 router.get('/admin/all', auth, getAllHours)
+      .get('/admin/users/unapproved', getUnapprovedUsers) //TODO add auth
       .put('/admin/hours/:id/approve', approveHour)
       .put('/admin/hours/:id/unapprove', unapproveHour)
+      .put('/admin/users/:id/approve', approveUser)
+      .put('/admin/users/:id/unapprove', unapproveUser)
 
 module.exports = router;

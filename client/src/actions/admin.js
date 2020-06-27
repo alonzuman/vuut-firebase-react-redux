@@ -46,6 +46,72 @@ export const getAllHours = () => async dispatch => {
   }
 }
 
+export const getAllUnapprovedUsers = () => async dispatch => {
+  try {
+    const res = await axios.get('api/admin/users/unapproved');
+    dispatch({
+      type: 'SET_UNAPPROVED_USERS',
+      payload: res.data
+    })
+  } catch (error) {
+    dispatch(setAlert({
+      msg: 'Server error, please refresh the page and try again',
+      type: 'danger'
+    }))
+  }
+}
+
+export const approveUser = (id) => async dispatch => {
+  console.log('approving')
+  dispatch({
+    type: 'ADMIN_LOADING'
+  })
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
+    }
+
+    await axios.put(`/api/admin/users/${id}/approve`, config);
+    dispatch(setAlert({
+      msg: 'Approved user',
+      type: 'success'
+    }))
+  } catch (error) {
+    dispatch(setAlert({
+      msg: 'Server error, please refresh the page and try again',
+      type: 'danger'
+    }))
+  }
+}
+
+export const unapproveUser = (id) => async dispatch => {
+  dispatch({
+    type: 'ADMIN_LOADING'
+  })
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
+      }
+    }
+
+    await axios.put(`/api/admin/users/${id}/unapprove`, config);
+    dispatch(setAlert({
+      msg: 'Approved user',
+      type: 'success'
+    }))
+  } catch (error) {
+    dispatch(setAlert({
+      msg: 'Server error, please refresh the page and try again',
+      type: 'danger'
+    }))
+  }
+}
+
 export const approveHour = (id, hours) => async dispatch => {
   const state = store.getState();
   try {

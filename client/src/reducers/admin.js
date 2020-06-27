@@ -2,7 +2,8 @@ const initialState = {
   isLoading: false,
   total: null,
   pending: null,
-  allHours: []
+  allHours: [],
+  unapprovedUsers: []
 }
 
 export const adminReducer = (state = initialState, action) => {
@@ -41,6 +42,11 @@ export const adminReducer = (state = initialState, action) => {
         pending: payload.pending,
         total: payload.total,
         isLoading: false,
+      }
+    case 'SET_UNAPPROVED_USERS':
+    return {
+        ...state,
+        unapprovedUsers: payload
       }
     default: return state;
   }

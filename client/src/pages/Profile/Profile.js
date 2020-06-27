@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../actions';
+import { logout, loadUser } from '../../actions';
 import Spinner from '../../components/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
 import Topbar from '../../components/Topbar/Topbar';
@@ -8,6 +8,8 @@ import Topbar from '../../components/Topbar/Topbar';
 export default function Profile() {
   const dispatch = useDispatch();
   const { token, isAuth, isLoading, user } = useSelector(state => state.auth)
+
+  useEffect(() => { loadUser() }, [])
 
   return (
     <div style={{textAlign: 'center'}}>
