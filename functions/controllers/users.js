@@ -18,8 +18,13 @@ const signup = async (req, res) => {
   const newUser = {
     email: req.body.email,
     password: req.body.password,
-    confirmPassword: req.body.confirmPassword
+    confirmPassword: req.body.confirmPassword,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    avatar: req.body.avatar
   }
+
+  console.log(newUser)
 
   try {
     let user = await db.doc(`/users/${newUser.email}`).get();
@@ -32,9 +37,14 @@ const signup = async (req, res) => {
     // Add user to the users collection
     const userCredentials = {
       email: newUser.email,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      avatar: req.body.avatar || '',
+      isAdmin: false,
       dateCreated: new Date().toISOString(),
       userId: data.user.uid
     }
+
     await db.collection('users').add(userCredentials);
 
     return res.status(201).json({
@@ -86,9 +96,13 @@ const signin = async (req, res) => {
 }
 
 const loadUser = async (req, res) => {
-  // Get user details from db
-  // console.log(req.headers['auth-token'])
-  res.send('loading user');
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    res.status(500).json({
+      msg: 'failed to load user'
+    })
+  }
 }
 
 module.exports = { signup, signin, loadUser }

@@ -1,14 +1,19 @@
 const { db, admin } = require('../utils/admin');
 
-const getLatestHours = async (req, res) => {
-  try {
-    // Get latest hours
-    const data = await db.collection('hours').get()
-    let hours = [];
-    data.forEach(doc => hours.push(doc.data()));
-    res.status(200).json(hours);
-  } catch (error) {
-    res.status(200).json(error);
+const getAllHours = async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      const data = await db.collection('hours').get()
+      let hours = [];
+      data.forEach(doc => hours.push({ id: doc.id, details: doc.data()}));
+      res.status(200).json(hours);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  } else {
+    res.status(500).json({
+      msg: `You don't have the permissions to do that foo`
+    })
   }
 }
 
@@ -20,4 +25,4 @@ const unapproveHour = async (req, res) => {
   res.send('unapproving hour')
 }
 
-module.exports = { getLatestHours, approveHour, unapproveHour }
+module.exports = { getAllHours, approveHour, unapproveHour }
