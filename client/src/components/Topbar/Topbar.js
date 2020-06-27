@@ -5,7 +5,7 @@ import BackButton from '../BackButton';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { useSelector } from 'react-redux';
 
-export default function Topbar({ backButton, themeToggle }) {
+export default function Topbar({ backButton, themeToggle, avatar }) {
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -27,11 +27,11 @@ export default function Topbar({ backButton, themeToggle }) {
         <li className='topbar-item'>
           {backButton === true ? <BackButton /> : ''}
         </li>
-        <Link to='/profile'>
+        {avatar === true && <Link to='/profile'>
           <li className='topbar-item'>
             <img style={avatarStyle} alt='user-avatar' className='avatar' src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU' />
           </li>
-        </Link>
+        </Link>}
       </ul>
     </div>
   )

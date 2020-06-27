@@ -17,7 +17,7 @@ export default function MyHours() {
 
   return (
     <div>
-      <Topbar backButton={true} />
+      <Topbar avatar={true}  backButton={true} />
       <div className='page-header'>
         <h1>My Hours</h1>
         <button onClick={() => setIsEditing(!isEditing)} className='btn secondary-button'>{isEditing ? 'Close' : 'Edit'}</button>

@@ -17,7 +17,7 @@ export const authReducer = (state = initialState, action) => {
     case 'USER_LOADED':
       return {
         ...state,
-        user: payload.user,
+        user: payload,
         isAdmin: payload.isAdmin,
         isAuth: true,
         isLoading: false

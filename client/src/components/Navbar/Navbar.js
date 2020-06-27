@@ -5,8 +5,7 @@ import { useSelector } from 'react-redux';
 
 export default function Navbar() {
   const { isAdmin, isAuth, isLoading } = useSelector(state => state.auth);
-  const theme = useSelector(state => state.theme);
-  const { colors } = theme;
+  const { colors } = useSelector(state => state.theme);
 
   const navbarStyle = {
     borderTop: colors.border,
@@ -17,12 +16,12 @@ export default function Navbar() {
   return (
     <div style={navbarStyle} className='navbar'>
       <ul className='nav-menu'>
-        {isAuth && !isLoading &&
+        {!isLoading &&
         <Fragment>
-          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/'><i className="fas fa-compass"></i><br />Home</NavLink>
-          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br/>Add Hours</NavLink>
-          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/notifications'><i className="fas fa-bell"></i><br/>Notifications</NavLink>
-          {isAdmin && <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/admin'><i className="fas fa-user-circle"></i><br/>Admin</NavLink>}
+          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/'><i className="fas fa-compass"></i><br /><small>Home</small></NavLink>
+          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br /><small>Add Hours</small></NavLink>
+          {/* <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/notifications'><i className="fas fa-bell"></i><br /><small>Notifications</small></NavLink> */}
+          {isAdmin && <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/admin'><i className="fas fa-user-circle"></i><br /><small>Admin</small></NavLink>}
         </Fragment>}
       </ul>
     </div>

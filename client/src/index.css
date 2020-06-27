@@ -91,6 +91,12 @@ label {
   height: 42px;
 }
 
+.big {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 1rem;
+}
+
 /* BUTTONS */
 input, button:focus {
   outline: none;

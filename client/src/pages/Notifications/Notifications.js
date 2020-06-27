@@ -4,7 +4,7 @@ import Topbar from '../../components/Topbar/Topbar'
 export default function Notifications() {
   return (
     <div>
-      <Topbar themeToggle={true} />
+      <Topbar avatar={true}  themeToggle={true} />
       <h1>Notifications</h1>
       <br />
       <p>Here will be the notifications I promise</p>

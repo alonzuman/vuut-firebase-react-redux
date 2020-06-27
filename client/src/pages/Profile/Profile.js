@@ -7,16 +7,17 @@ import Topbar from '../../components/Topbar/Topbar';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const { token, isAuth, isLoading } = useSelector(state => state.auth)
+  const { token, isAuth, isLoading, user } = useSelector(state => state.auth)
 
   return (
-    <div>
-      <Topbar backButton={true} />
+    <div style={{textAlign: 'center'}}>
+      <Topbar avatar={false} backButton={true} />
       {isLoading && <Spinner />}
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
       {!isLoading &&
       <Fragment>
-        <h1>Profile</h1>
+        <img className='avatar big' src={user.avatar ? user.avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU'} />
+        <h1>Hi, {user.firstName}</h1>
         <button className='btn secondary-button' onClick={() => dispatch(logout())}>Log Out</button>
       </Fragment>}
     </div>

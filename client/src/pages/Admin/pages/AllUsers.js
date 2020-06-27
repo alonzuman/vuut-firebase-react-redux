@@ -17,14 +17,8 @@ export default function AllHours() {
   return (
     <div>
       <Topbar avatar={true}  backButton={true} />
-      {!auth.isLoading && !isAuth && !isAdmin && <Redirect to='/signin' />}
-      <h1>All Hours</h1>
-      <ul className='hours-grid' style={{marginTop: '1rem'}}>
-        {isLoading && <Spinner />}
-        {!isLoading && <Fragment>
-          {allHours ? allHours.map(hour => <AdminHourCard details={hour.details} id={hour.id} key={hour.id} />) : <Spinner padding={true}/>}
-        </Fragment>}
-      </ul>
+      <h1>All Users</h1>
+      <p>All users page</p>
     </div>
   )
 }

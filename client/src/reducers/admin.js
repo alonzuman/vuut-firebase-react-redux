@@ -14,6 +14,12 @@ export const adminReducer = (state = initialState, action) => {
         ...state,
         isLoading: true
       }
+    case 'CLEAR_ADMIN_HOURS':
+      return {
+        ...state,
+        isLoading: false,
+        allHours: []
+      }
     case 'SET_ADMIN_HOURS':
       return {
         ...state,

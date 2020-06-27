@@ -15,11 +15,10 @@ export const getAllHours = () => async dispatch => {
     }
 
     const res = await axios.get('/api/admin/all', config);
-    // console.log(res.data);
-    let pending = 0;
-    let total = 0;
 
     const calcHours = () => {
+      let pending = 0;
+      let total = 0;
       res.data.forEach(doc => {
         if (doc.details.approved) {
           total += parseInt(doc.details.hours);
@@ -29,7 +28,7 @@ export const getAllHours = () => async dispatch => {
       })
       return { pending, total }
     }
-    calcHours();
+    const { pending, total } = calcHours();
 
     dispatch({
       type: 'SET_ADMIN_HOURS',
@@ -49,11 +48,6 @@ export const getAllHours = () => async dispatch => {
 
 export const approveHour = (id, hours) => async dispatch => {
   const state = store.getState();
-
-  dispatch({
-    type: 'ADMIN_LOADING'
-  });
-
   try {
     const config = {
       headers: {
@@ -69,7 +63,8 @@ export const approveHour = (id, hours) => async dispatch => {
       type: 'APPROVE_HOUR',
       payload: {
         id,
-        total
+        total,
+        pending
       }
     })
     // TODO if already approved
@@ -83,11 +78,6 @@ export const approveHour = (id, hours) => async dispatch => {
 
 export const unapproveHour = (id, hours) => async dispatch => {
   const state = store.getState();
-
-  dispatch({
-    type: 'ADMIN_LOADING'
-  });
-
   try {
     const config = {
       headers: {
@@ -104,7 +94,8 @@ export const unapproveHour = (id, hours) => async dispatch => {
       type: 'UNAPPROVE_HOUR',
       payload: {
         id,
-        total
+        total,
+        pending
       }
     })
   } catch (error) {

@@ -18,19 +18,19 @@ export default function AdminHourCard({ details, id }) {
   }
 
   const handleApprove = () => {
-    setIsApproved(!isApproved);
+    setIsApproved(true);
     dispatch(approveHour(id, details.hours))
   }
 
   const handleUnapprove = () => {
-    setIsApproved(!isApproved);
+    setIsApproved(false);
     dispatch(unapproveHour(id, details.hours))
   }
 
   return (
-    <Fragment>
-      {details ?
-      <div style={boxStyle} className='admin-card-container box-background'>
+    <div style={boxStyle} className='admin-card-container box-background'>
+      {!details && <Spinner />}
+      {details && <Fragment>
         <div className='admin-card-header'>
           <div className='name-and-avatar'>
             <img className='avatar' style={avatarStyle} src={details.user.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU'} />
@@ -47,8 +47,7 @@ export default function AdminHourCard({ details, id }) {
           <button className='btn btn-primary' onClick={handleApprove}>Approve</button >:
           <button style={{width: '100%', margin: '.5rem 0', height: '34px'}} className='btn secondary-button' onClick={handleUnapprove}>Decline</button>}
         </div>
-      </div>:
-      <Spinner padding={true} />}
-    </Fragment>
+      </Fragment>}
+    </div>
   )
 }

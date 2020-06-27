@@ -48,7 +48,7 @@ export default function Add() {
 
   return (
     <div>
-      <Topbar themeToggle={true} />
+      <Topbar avatar={true} themeToggle={true} />
       {type === 'success' && <Redirect to='/' />}
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
       {hoursState.isLoading ? <Spinner /> :

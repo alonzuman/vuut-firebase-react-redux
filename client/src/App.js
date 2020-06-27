@@ -9,6 +9,8 @@ import Add from './pages/Add/Add';
 import Notifications from './pages/Notifications/Notifications';
 import Admin from './pages/Admin/Admin';
 import MyHours from './pages/MyHours/MyHours';
+import AllHours from './pages/Admin/pages/AllHours';
+import AllUsers from './pages/Admin/pages/AllUsers';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
@@ -18,12 +20,11 @@ import Alert from './components/Alert/Alert';
 import Profile from './pages/Profile/Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser, switchTheme, loadTheme } from './actions';
-import AllHours from './pages/Admin/pages/AllHours';
 
 function App() {
   const dispatch = useDispatch();
   const { isOn, type, msg } = useSelector(state => state.alerts)
-  const { token } = useSelector(state => state.auth)
+  const { isLoading } = useSelector(state => state.auth)
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -48,7 +49,7 @@ function App() {
 
   return (
       <Router>
-        {token && <Navbar />}
+        {!isLoading && <Navbar />}
         {isOn && <Alert type={type} msg={msg} />}
         <Switch>
           <div style={containerStyle} className='container'>
@@ -56,6 +57,7 @@ function App() {
             <Route path='/add' component={Add} />
             <Route exact path='/admin' component={Admin} />
             <Route exact path='/admin/all-hours' component={AllHours} />
+            <Route exact path='/admin/all-users' component={AllUsers} />
             <Route path='/notifications' component={Notifications} />
             <Route path='/my-hours' component={MyHours} />
             <Route path='/profile' component={Profile} />
