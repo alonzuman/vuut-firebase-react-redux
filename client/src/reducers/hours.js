@@ -1,4 +1,7 @@
 const initialState = {
+  approved: 0,
+  pending: 0,
+  total: 0,
   myHours: [],
   isLoading: false
 }
@@ -25,8 +28,11 @@ export const hoursReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         myHours: [
-          ...payload
-        ]
+          ...payload.myHours
+        ],
+        approved: payload.approved,
+        pending: payload.pending,
+        total: payload.total,
       }
     case 'HOURS_DELETED':
       console.log(state.myHours);
@@ -34,6 +40,7 @@ export const hoursReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         myHours: state.myHours.filter(hour => hour.id !== payload)
+        // TODO calculate the hours minus that one
       }
     default: return state;
   }

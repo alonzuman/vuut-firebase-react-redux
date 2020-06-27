@@ -38,18 +38,22 @@ export default function Home() {
       <Fragment>
         <h1 className='home-title'>Home</h1>
         <ul className='stats-list box-background' style={boxStyle}>
-          <li className='stats-item'>
-            <h1>28</h1>
-            <p>Total Hours</p>
-          </li>
-          <li className='stats-item'>
-            <h1>28</h1>
-            <p>Pending</p>
-          </li>
-          <li className='stats-item'>
-            <h1>28</h1>
-            <p>Approved</p>
-          </li>
+          {isLoading && <Spinner padding={false} />}
+          {!isLoading &&
+          <Fragment>
+            <li className='stats-item'>
+              <h1>{hours.total}</h1>
+              <p>Total Hours</p>
+            </li>
+            <li className='stats-item'>
+              <h1>{hours.pending}</h1>
+              <p>Pending</p>
+            </li>
+            <li className='stats-item'>
+              <h1>{hours.approved}</h1>
+              <p>Approved</p>
+            </li>
+          </Fragment>}
         </ul>
         <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'><button className='secondary-button'>View All</button></Link></div>
         <ul className='box-background' style={boxStyle}>
@@ -62,7 +66,7 @@ export default function Home() {
         </ul>
         <div className='category-title'><h2>Recent</h2></div>
         <ul>
-          {!hours.myHours[0] ? <Spinner /> : <Hour hour={hours.myHours[0]} />}
+          {!hours.myHours[0] ? <div style={boxStyle} className='box-background'><Spinner padding={true} /></div> : <Hour hour={hours.myHours[0]} />}
         </ul>
       </Fragment>}
     </div>

@@ -16,7 +16,7 @@
     "alertText": "white"
   },
   "light": {
-    "backgroundDark": "#f7f7f7",
+    "backgroundDark": "#efefef",
     "background": "white",
     "gray": "#989899",
     "orange": "rgb(255, 159, 10)",

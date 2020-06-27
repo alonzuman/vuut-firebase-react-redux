@@ -45,9 +45,31 @@ export const getMyHours = () => async dispatch => {
       }
     }
     const res = await axios.get(`/api/hours`, config);
+    const calcHours = () => {
+      let pending = 0;
+      let approved = 0;
+      let total = 0;
+      res.data.forEach(doc => {
+        if (doc.data.approved) {
+          return approved += parseInt(doc.data.hours);
+        } else {
+          return pending += parseInt(doc.data.hours);
+        }
+      })
+      res.data.forEach(doc => total += parseInt(doc.data.hours));
+      return { pending, approved, total }
+    }
+
+    const { pending, approved, total } = calcHours();
+
     dispatch({
       type: 'HOURS_LOADED',
-      payload: res.data
+      payload: {
+        myHours: res.data,
+        approved,
+        pending,
+        total
+      }
     })
   } catch (error) {
     dispatch(setAlert({
