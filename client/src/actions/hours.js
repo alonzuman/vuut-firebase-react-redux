@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alerts';
 
-export const addHour = (hours) => async dispatch => {
+export const addHour = (hour) => async dispatch => {
   dispatch({
     type: 'HOURS_LOADING'
   });
@@ -13,14 +13,13 @@ export const addHour = (hours) => async dispatch => {
         'auth-token': localStorage.getItem('token')
       }
     }
-    const res = await axios.post(`/api/hours`, hours, config);
-    console.log(res.data)
+    const res = await axios.post(`/api/hours`, hour, config);
     if (res.data.msg === 'added successfully!') {
       dispatch(setAlert({ msg: 'Added successfully!', type: 'success' }));
       dispatch({
         type: 'HOURS_ADDED',
         payload: {
-          newHour: res.data
+          newHour: hour
         }
       });
     };

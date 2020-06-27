@@ -8,11 +8,13 @@ import './Add.css'
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import Topbar from '../../components/Topbar/Topbar';
 
 export default function Add() {
   const [hours, setHours] = useState('');
   const [description, setDescription] = useState('');
-  const [date, setDate] = useState(Date.now());
+  // const [date, setDate] = useState(Date.now());
+  const [date, setDate] = useState('');
   const dispatch = useDispatch();
   const hoursState = useSelector(state => state.hours);
   const { token, isAuth, isLoading } = useSelector(state => state.auth);
@@ -26,8 +28,11 @@ export default function Add() {
       dispatch(setAlert({ msg: 'Please fill all required fields', type: 'danger' }));
     } else {
       const newHour = {
-        description, hours, date
-      }
+        description,
+        hours,
+        date
+      };
+
       dispatch(addHour(newHour))
     }
   }
@@ -43,6 +48,7 @@ export default function Add() {
 
   return (
     <div>
+      <Topbar themeToggle={true} />
       {type === 'success' && <Redirect to='/' />}
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
       {hoursState.isLoading ? <Spinner /> :
@@ -57,7 +63,7 @@ export default function Add() {
               <div className='form-group flex-group'>
                 <label>Date</label>
                 <div>
-                  <input style={inputStyle} className='form-control' type='date' value={date} onChange={e => setDate(e.target.value)} />
+                  <input style={inputStyle} className='form-control' value={date} type='date' onChange={e => setDate(e.target.value)} />
                 </div>
                 {/* <DatePicker id='date-picker' style={inputStyle}  className='form-control' selected={date} onSelect={handleSelect} /> */}
               </div>

@@ -4,9 +4,10 @@ import Topbar from '../../components/Topbar/Topbar'
 export default function Notifications() {
   return (
     <div>
-      <Topbar  />
+      <Topbar themeToggle={true} />
       <h1>Notifications</h1>
-      <p>Here will be the notifications</p>
+      <br />
+      <p>Here will be the notifications I promise</p>
     </div>
   )
 }

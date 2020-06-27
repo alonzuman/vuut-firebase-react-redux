@@ -7,6 +7,8 @@ import SignIn from './pages/Auth/SignIn';
 import Home from './pages/Home/Home';
 import Add from './pages/Add/Add';
 import Notifications from './pages/Notifications/Notifications';
+import Admin from './pages/Admin/Admin';
+import MyHours from './pages/MyHours/MyHours';
 
 // Components
 import Navbar from './components/Navbar/Navbar';
@@ -16,7 +18,7 @@ import Alert from './components/Alert/Alert';
 import Profile from './pages/Profile/Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadUser, switchTheme, loadTheme } from './actions';
-import MyHours from './pages/MyHours/MyHours';
+import AllHours from './pages/Admin/pages/AllHours';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +53,8 @@ function App() {
           <div style={containerStyle} className='container'>
             <Route exact path='/' component={Home} />
             <Route path='/add' component={Add} />
+            <Route exact path='/admin' component={Admin} />
+            <Route exact path='/admin/all-hours' component={AllHours} />
             <Route path='/notifications' component={Notifications} />
             <Route path='/my-hours' component={MyHours} />
             <Route path='/profile' component={Profile} />

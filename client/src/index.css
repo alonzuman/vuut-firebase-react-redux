@@ -145,3 +145,8 @@ input, button:focus {
 .secondary-button:hover {
   color: var(--primary-hover);
 }
+
+.stats-label {
+  font-size: .75rem;
+  margin-top: .5rem;
+}

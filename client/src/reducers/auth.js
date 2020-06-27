@@ -1,4 +1,5 @@
 const initialState = {
+  isAdmin: false,
   token: localStorage.getItem('token'),
   user: {},
   isAuth: false,
@@ -17,6 +18,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: payload.user,
+        isAdmin: payload.isAdmin,
         isAuth: true,
         isLoading: false
       }

@@ -39,6 +39,7 @@ export const signup = (user) => async dispatch => {
     }
 
     const res = await axios.post('/api/signup', user, config)
+    console.log(res.data);
     dispatch({
       type: 'SIGN_UP_SUCCESS',
       payload: {
@@ -48,8 +49,7 @@ export const signup = (user) => async dispatch => {
     })
     // Dispatch alert
   } catch (error) {
-    console.log(error.response.data.msg)
-    // Dispatch alert
+    dispatch(setAlert({ msg: 'Failed to signup, please try again', type: 'danger'}))
   }
 }
 

@@ -43,15 +43,15 @@ export default function Home() {
           <Fragment>
             <li className='stats-item'>
               <h1>{hours.total}</h1>
-              <p>Total Hours</p>
+              <p className='stats-label'>Total Hours</p>
             </li>
             <li className='stats-item'>
               <h1>{hours.pending}</h1>
-              <p>Pending</p>
+              <p className='stats-label'>Pending</p>
             </li>
             <li className='stats-item'>
               <h1>{hours.approved}</h1>
-              <p>Approved</p>
+              <p className='stats-label'>Approved</p>
             </li>
           </Fragment>}
         </ul>

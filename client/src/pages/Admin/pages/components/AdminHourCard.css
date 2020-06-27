@@ -1,0 +1,13 @@
+.admin-card-container {
+  padding: 1rem;
+  margin: 0;
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hours-and-description {
+  margin-top: .5rem;
+}
