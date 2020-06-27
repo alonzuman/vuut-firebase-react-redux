@@ -27,16 +27,19 @@ const addHour = async (req, res) => {
     dateCreated: admin.firestore.Timestamp.fromDate(new Date())
   };
 
-  try {
-    const data = await hoursRef.add(newHour);
-
-    res.status(201).json({
-      msg: 'added successfully!',
-      id: data.id
-    })
-  } catch (error) {
-    console.log(error);
-    res.status(500).json(error)
+  if (req.user.isApproved === true || req.user.isAdmin === true) {
+    try {
+      const data = await hoursRef.add(newHour);
+      res.status(201).json({
+        msg: 'added successfully!',
+        id: data.id
+      })
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error)
+    }
+  } else {
+    return res.status(403).json({ msg: 'profile not approved yet, please ask admin for approval' })
   }
 }
 
