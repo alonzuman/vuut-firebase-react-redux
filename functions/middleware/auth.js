@@ -8,8 +8,12 @@ const auth = async (req, res, next) => {
       // TODO return req.user to the firstName and the lastName as well
       const data = await admin.auth().verifyIdToken(idToken);
       const dbUser = await admin.firestore().collection('users').where('userId', '==', data.uid).limit(1).get();
-      req.user = dbUser.docs[0].data()
-      next();
+      req.user = dbUser.docs[0].data();
+      if (req.user.isApproved === true || req.user.isAdmin === true) {
+        return next();
+      } else {
+        return res.status(403).json({ msg: 'profile not approved yet, please ask admin for approval'})
+      }
     } catch (error) {
       switch (error.code) {
         case 'auth/argument-error':

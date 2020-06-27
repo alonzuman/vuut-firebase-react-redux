@@ -39,6 +39,7 @@ const signup = async (req, res) => {
       lastName: req.body.lastName,
       avatar: req.body.avatar || '',
       organization: 'Shaldag',
+      isApproved: false,
       isAdmin: false,
       dateCreated: new Date().toISOString(),
       userId: data.user.uid
