@@ -20,7 +20,7 @@ export default function Hour({ hour, isEditing }) {
       {!hour && <Spinner />}
       {hour.data && <div style={hourStyle} className='hour-container box-background'>
         {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour(hour.id))} cancel={() => setIsDeleting(false)} />}
-        <div className='hour-header'>
+        <div style={{ direction: 'ltr' }} className='hour-header'>
           <h1>{hour.data.description}</h1>
           <small>{hour.data.date}</small>
         </div>
