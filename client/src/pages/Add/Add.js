@@ -18,7 +18,7 @@ export default function Add() {
   const dispatch = useDispatch();
   const hoursState = useSelector(state => state.hours);
   const { token, isAuth, isLoading } = useSelector(state => state.auth);
-  const { type } = useSelector(state => state.alerts);
+  const { type, msg } = useSelector(state => state.alerts);
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -37,9 +37,10 @@ export default function Add() {
     }
   }
 
-  // const handleSelect = e => {
-  //   setDate(e)
-  // }
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers
+  }
 
   const inputStyle = {
     backgroundColor: colors.background,
@@ -48,10 +49,12 @@ export default function Add() {
 
   return (
     <div>
-      <Topbar avatar={true} themeToggle={true} />
-      {type === 'success' && <Redirect to='/' />}
-      {!isLoading && !isAuth && !token && <Redirect to='/signin' />}
-      {hoursState.isLoading ? <Spinner /> :
+      <Topbar backButton={true} />
+      {type === 'success' && msg === 'Added successfully!' && <Redirect to='/' />}
+      {!isLoading && !token &&!isAuth && <Redirect to='/signin' />}
+      <div style={containerStyle} className='container'>
+        {hoursState.isLoading && <Spinner />}
+        {!hoursState.isLoading &&
         <Fragment>
           <h1>Add Hours</h1>
           <form onSubmit={handleSubmit}>
@@ -75,6 +78,7 @@ export default function Add() {
             <button type='submit' className='btn btn-primary' >Submit</button>
           </form>
         </Fragment>}
+      </div>
     </div>
   )
 }

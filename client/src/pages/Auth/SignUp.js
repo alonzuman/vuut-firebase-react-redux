@@ -26,8 +26,14 @@ export default function SignUp() {
     border: colors.border
   }
 
+
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers
+  }
+
   return (
-    <div>
+    <div style={containerStyle} className='container'>
       {isAuth && <Redirect to='/' />}
       {isLoading && <Spinner />}
       {!isLoading &&
@@ -48,11 +54,11 @@ export default function SignUp() {
         </div>
         <div className='form-group'>
           <label>Password</label>
-          <input style={inputStyle} required placeholder='••••••••' className='form-control' type='password' value={password} onChange={e => setPassword(e.target.value)} />
+          <input style={inputStyle} required placeholder='••••••' className='form-control' type='password' value={password} onChange={e => setPassword(e.target.value)} />
         </div>
         <div className='form-group'>
           <label>Confirm Password</label>
-          <input style={inputStyle} required placeholder='••••••••' className='form-control' type='password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+          <input style={inputStyle} required placeholder='••••••' className='form-control' type='password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
         </div>
         <button className='btn btn-primary'>Sign In</button>
         <p style={{marginTop: '1rem'}}>Already have an account? <Link to='/signin'>Sign in</Link></p>

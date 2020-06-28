@@ -1,4 +1,4 @@
-.hour-container {
+.card-container {
   padding: 1rem;
   height: 100%;
   display: flex;
@@ -6,18 +6,22 @@
   justify-content: space-around;
 }
 
-.hour-header {
+.card-header {
   display: flex;
   justify-content: space-between;
   margin-bottom: .75rem;
 }
 
-.hour-header h1 {
+.card-header h1 {
   font-size: 1.3rem;
 }
 
-.hour-header small {
+.card-header small {
   text-align: right;
+}
+
+.name-and-avatar p {
+  font-size: .75rem;
 }
 
 .hour-footer {

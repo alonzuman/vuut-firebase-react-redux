@@ -24,12 +24,17 @@ export default function SignIn() {
     border: colors.border
   }
 
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers
+  }
+
   return (
-    <div>
+    <div style={containerStyle} className='container'>
       {isAuth && <Redirect to='/' />}
       {isLoading && <Spinner />}
       {!isLoading && !isAuth &&
-      <Fragment>
+      <div>
         <form onSubmit={handleSignin}>
           <h1 style={{ marginBottom: '1rem' }}>Sign In</h1>
           <div className='form-group'>
@@ -43,7 +48,7 @@ export default function SignIn() {
           <button className='btn btn-primary'>Sign In</button>
           <p style={{marginTop: '1rem'}}>Don't have an account? <Link to='/signup'>Sign up</Link></p>
         </form>
-        </Fragment>}
+        </div>}
     </div>
   )
 }

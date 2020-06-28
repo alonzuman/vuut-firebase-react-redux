@@ -20,7 +20,7 @@ export const loadUser = () => async dispatch => {
     })
   } catch (error) {
     dispatch({
-      type: 'AUTH_ERROR'
+      type: 'AUTH_ERROR',
     });
   }
 }
@@ -38,7 +38,7 @@ export const signup = (user) => async dispatch => {
       }
     }
 
-    const res = await axios.post('/api/signup', user, config)
+    const res = await axios.post('/api/signup', user, config);
     dispatch({
       type: 'SIGN_UP_SUCCESS',
       payload: {
@@ -46,10 +46,19 @@ export const signup = (user) => async dispatch => {
         user: res.data.user
       }
     })
-    dispatch(setAlert({ msg: 'Signed up successfully', type: 'success' }));
+    dispatch(setAlert({
+      msg: 'Signed up successfully',
+      type: 'success'
+    }));
     dispatch(loadUser());
   } catch (error) {
-    dispatch(setAlert({ msg: 'Failed to signup, please try again', type: 'danger'}))
+    dispatch({
+      type: 'AUTH_ERROR'
+    })
+    dispatch(setAlert({
+      msg: error.response.data.msg,
+      type: 'danger'
+    }));
   }
 }
 
@@ -63,7 +72,8 @@ export const signin = (user) => async dispatch => {
     dispatch({
       type: 'SIGN_IN_SUCCESS',
       payload: {
-        token: res.data.token
+        token: res.data.token,
+        user: res.data.user
       }
     });
     dispatch(setAlert({
@@ -71,10 +81,13 @@ export const signin = (user) => async dispatch => {
       type: 'success'
     }));
   } catch (error) {
+    dispatch({
+      type: 'AUTH_ERROR'
+    })
     dispatch(setAlert({
-      msg: 'Failed to log in, please try again',
+      msg: error.response.data.msg,
       type: 'danger'
-    }))
+    }));
   }
 };
 

@@ -8,11 +8,18 @@ import Topbar from '../../components/Topbar/Topbar';
 export default function Profile() {
   const dispatch = useDispatch();
   const { token, isAuth, isLoading, user } = useSelector(state => state.auth)
+  const { colors } = useSelector(state => state.theme)
 
   useEffect(() => { loadUser() }, [])
 
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers,
+    textAlign: 'center'
+  }
+
   return (
-    <div style={{textAlign: 'center'}}>
+    <div style={containerStyle} className='container'>
       <Topbar avatar={false} backButton={true} />
       {isLoading && <Spinner />}
       {!isLoading && !isAuth && !token && <Redirect to='/signin' />}

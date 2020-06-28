@@ -2,7 +2,7 @@ import store from '../store';
 import axios from 'axios';
 import { setAlert } from './alerts';
 
-export const getAllHours = () => async dispatch => {
+export const getAllUnapprovedHours = () => async dispatch => {
   dispatch({
     type: 'ADMIN_LOADING'
   })
@@ -75,6 +75,10 @@ export const approveUser = (id) => async dispatch => {
     }
 
     await axios.put(`/api/admin/users/${id}/approve`, config);
+    dispatch({
+      type: 'APPROVE_USER',
+      payload: id
+    })
     dispatch(setAlert({
       msg: 'Approved user',
       type: 'success'
@@ -100,6 +104,10 @@ export const unapproveUser = (id) => async dispatch => {
     }
 
     await axios.put(`/api/admin/users/${id}/unapprove`, config);
+    dispatch({
+      type: 'APPROVE_USER',
+      payload: id
+    })
     dispatch(setAlert({
       msg: 'Approved user',
       type: 'success'

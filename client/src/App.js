@@ -13,7 +13,6 @@ import AllHours from './pages/Admin/pages/AllHours';
 import AllUsers from './pages/Admin/pages/AllUsers';
 
 // Components
-import Navbar from './components/Navbar/Navbar';
 import Alert from './components/Alert/Alert';
 
 // Redux
@@ -24,7 +23,6 @@ import { loadUser, switchTheme, loadTheme } from './actions';
 function App() {
   const dispatch = useDispatch();
   const { isOn, type, msg } = useSelector(state => state.alerts)
-  const { isLoading } = useSelector(state => state.auth)
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -42,17 +40,10 @@ function App() {
     };
   }, [])
 
-  const containerStyle = {
-    backgroundColor: colors.backgroundDark,
-    color: colors.headers,
-  }
-
   return (
       <Router>
-        {!isLoading && <Navbar />}
         {isOn && <Alert type={type} msg={msg} />}
         <Switch>
-          <div style={containerStyle} className='container'>
             <Route exact path='/' component={Home} />
             <Route path='/add' component={Add} />
             <Route exact path='/admin' component={Admin} />
@@ -63,7 +54,6 @@ function App() {
             <Route path='/profile' component={Profile} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
-          </div>
         </Switch>
       </Router>
   );

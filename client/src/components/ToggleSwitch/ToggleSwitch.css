@@ -73,6 +73,10 @@ input:checked + .slider:before {
   z-index: 99;
 }
 
+.switch:hover {
+  cursor: pointer;
+}
+
 .slider.round:before {
   border-radius: 50%;
 }

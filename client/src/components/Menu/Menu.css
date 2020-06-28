@@ -1,0 +1,23 @@
+.menu a {
+  text-decoration: none;
+}
+
+.menu-item:first-child {
+  background-color: black;
+}
+
+.menu-item {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu-item a {
+  text-decoration: none;
+  color: var(--app-white);
+}
+
+.menu-item-info {
+  display: flex;
+  justify-content: space-between;
+}

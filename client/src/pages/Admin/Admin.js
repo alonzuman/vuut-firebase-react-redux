@@ -3,7 +3,9 @@ import Spinner from '../../components/Spinner/Spinner';
 import { Link, Redirect } from 'react-router-dom';
 import Topbar from '../../components/Topbar/Topbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllHours } from '../../actions';
+import { getAllUnapprovedHours } from '../../actions';
+import Navbar from '../../components/Navbar/Navbar';
+import StatsBox from '../../components/Stats/StatsBox';
 
 export default function Admin() {
   const dispatch = useDispatch();
@@ -11,47 +13,57 @@ export default function Admin() {
   const { isAdmin, token } = useSelector(state => state.auth)
   const { total, isLoading , pending, allHours } = useSelector(state => state.admin)
 
-  const boxStyle = {
-    backgroundColor: colors.boxBackground,
+  const containerStyle = {
+    backgroundColor: colors.backgroundDark,
+    color: colors.headers,
   }
 
   useEffect(() => {
-    dispatch(getAllHours());
+    dispatch(getAllUnapprovedHours());
   }, [])
 
+  const stat1 = {
+    stat: total,
+    label: 'Total'
+  }
+
+  const stat2 = {
+    stat: pending,
+    label: 'Pending'
+  }
+
+  const hoursStats = [
+    stat1, stat2
+  ]
+
+  const stat3 = {
+    stat: 238,
+    label: 'Total'
+  }
+
+  const stat4 = {
+    stat: 199,
+    label: 'Pending'
+  }
+
+  const userStats = [
+    stat3,
+    stat4
+  ]
+
   return (
-    <div>
+    <Fragment>
       <Topbar avatar={true}  themeToggle={true}/>
-      <h1 className='home-title'>Admin Page</h1>
+      <Navbar />
+    <div style={containerStyle} className='container'>
+      <h1 className='home-title'>Admin Dashboard</h1>
       {!token && <Redirect to='/signin' />}
       {!isLoading && !isAdmin && !allHours && <Redirect to='/' />}
-      <Fragment>
-        <div className='category-title'><h2>Hours</h2><Link to='/admin/all-hours'><button className='secondary-button'>View All</button></Link></div>
-        <ul className='stats-list box-background' style={boxStyle}>
-            {isLoading &&  <Spinner />}
-            {!isLoading && <Fragment>
-              <li className='stats-item'>
-                <h1>{total}</h1>
-                <p className='stats-label'>Total</p>
-              </li>
-              <li className='stats-item'>
-                <h1>{pending}</h1>
-                <p className='stats-label'>Pending Approval</p>
-              </li>
-            </Fragment>}
-        </ul>
-        <div className='category-title'><h2>Users</h2><Link to='/admin/all-users'><button className='secondary-button'>View All</button></Link></div>
-        <ul className='stats-list box-background' style={boxStyle}>
-          <li className='stats-item'>
-            <h1>237</h1>
-            <p className='stats-label'>Total</p>
-          </li>
-          <li className='stats-item'>
-            <h1>540</h1>
-            <p className='stats-label'>Pending Approval</p>
-          </li>
-        </ul>
-      </Fragment>
+      <div className='category-title'><h2>Hours</h2><Link to='/admin/all-hours'><button className='secondary-button'>View All</button></Link></div>
+      <StatsBox stats={hoursStats} isLoading={isLoading} />
+      <div className='category-title'><h2>Users</h2><Link to='/admin/all-users'><button className='secondary-button'>View All</button></Link></div>
+      <StatsBox stats={userStats} isLoading={isLoading} />
     </div>
+    </Fragment>
   )
 }

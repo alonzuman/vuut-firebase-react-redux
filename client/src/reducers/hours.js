@@ -23,6 +23,11 @@ export const hoursReducer = (state = initialState, action) => {
           payload.newHour
         ]
       }
+    case 'HOURS_ADDED_FAIL':
+      return {
+        ...state,
+        isLoading: false
+      }
     case 'HOURS_LOADED':
       return {
         ...state,
@@ -35,7 +40,6 @@ export const hoursReducer = (state = initialState, action) => {
         total: payload.total,
       }
     case 'HOURS_DELETED':
-      console.log(state.myHours);
       return {
         ...state,
         isLoading: false,

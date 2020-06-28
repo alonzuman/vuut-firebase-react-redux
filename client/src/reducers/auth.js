@@ -38,6 +38,7 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         token: payload.token,
+        user: payload.user,
         isAuth: true,
         isLoading: false
       }

@@ -40,8 +40,11 @@ export const addHour = (hour) => async dispatch => {
       });
     };
   } catch (error) {
+    dispatch({
+      type: 'HOURS_ADDED_FAIL'
+    })
     dispatch(setAlert({
-      msg: 'Faild to add, please refresh the page and try again',
+      msg: error.response.data.msg,
       type: 'danger'
     }))
   }

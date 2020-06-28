@@ -1,0 +1,16 @@
+.stats-list {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.stats-item {
+  padding: .5rem;
+  margin: .5rem;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.stats-item:hover {
+  cursor: pointer;
+}
+

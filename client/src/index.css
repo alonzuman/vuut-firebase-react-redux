@@ -91,6 +91,12 @@ label {
   height: 42px;
 }
 
+.medium {
+  width: 72px;
+  height: 72px;
+  margin-bottom: .3rem;
+}
+
 .big {
   width: 96px;
   height: 96px;

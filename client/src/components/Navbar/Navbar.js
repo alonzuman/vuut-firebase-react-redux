@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
+import NavItem from './NavItem';
 import './Navbar.css';
 import { useSelector } from 'react-redux';
 
 export default function Navbar() {
-  const { isAdmin, isAuth, isLoading } = useSelector(state => state.auth);
+  const { isAdmin } = useSelector(state => state.auth);
   const { colors } = useSelector(state => state.theme);
 
   const navbarStyle = {
@@ -16,13 +16,12 @@ export default function Navbar() {
   return (
     <div style={navbarStyle} className='navbar'>
       <ul className='nav-menu'>
-        {!isLoading && isAuth &&
         <Fragment>
-          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/'><i className="fas fa-compass"></i><br /><small>Home</small></NavLink>
-          <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/add'><i className="fas fa-plus"></i><br /><small>Add Hours</small></NavLink>
+          <NavItem link='/' icon='fas fa-compass' label='Home' />
+          <NavItem link='/add' icon='fas fa-plus' label='Add Hours' />
+          {isAdmin && <NavItem link='/admin' icon='fas fa-user-circle' label='Admin' />}
           {/* <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/notifications'><i className="fas fa-bell"></i><br /><small>Notifications</small></NavLink> */}
-          {isAdmin && isAuth && <NavLink exact activeClassName='active-nav-item' className='nav-item' to='/admin'><i className="fas fa-user-circle"></i><br /><small>Admin</small></NavLink>}
-        </Fragment>}
+        </Fragment>
       </ul>
     </div>
   )

@@ -43,8 +43,20 @@ export const adminReducer = (state = initialState, action) => {
         total: payload.total,
         isLoading: false,
       }
+    case 'APPROVE_USER':
+      console.log(payload)
+      return {
+        ...state,
+        isLoading: false,
+        unapprovedUsers: state.unapprovedUsers.filter(user => user.id !== payload)
+      }
+    case 'UNAPPROVE_USER':
+      return {
+        ...state,
+        isLoading: false
+      }
     case 'SET_UNAPPROVED_USERS':
-    return {
+      return {
         ...state,
         unapprovedUsers: payload
       }
