@@ -42,15 +42,18 @@ const signup = async (req, res) => {
       organization: 'Shaldag',
       isApproved: false,
       isAdmin: false,
+      total: 0,
+      pending: 0,
       dateCreated: new Date().toISOString(),
       userId: data.user.uid
     }
 
-    await db.collection('users').add(userCredentials);
+    await db.collection('users').doc(data.user.uid).set(userCredentials);
 
     return res.status(201).json({
       msg: 'successfully created user',
-      token
+      token,
+      user: userCredentials
     })
   } catch (error) {
     console.log(error);
@@ -80,10 +83,12 @@ const signin = async (req, res) => {
 
   try {
     const data = await firebase.auth().signInWithEmailAndPassword(user.email, user.password);
+    const newUser = await usersRef.doc(data.user.uid).get();
     const token = await data.user.getIdToken();
     res.status(200).json({
       msg: 'welcome!',
-      token
+      token,
+      user: newUser.data()
     })
   } catch (error) {
     console.log(error);

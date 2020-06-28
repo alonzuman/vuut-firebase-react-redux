@@ -2,10 +2,10 @@ const { db } = require('../utils/admin');
 const hoursRef = db.collection('hours');
 const usersRef = db.collection('users');
 
-const getAllHours = async (req, res) => {
+const getAllUnapprovedHours = async (req, res) => {
   if (req.user.isAdmin) {
     try {
-      const data = await db.collection('hours').get()
+      const data = await db.collection('hours').where('approved', '==', false).get()
       let hours = [];
       data.forEach(doc => hours.push({ id: doc.id, details: doc.data()}));
       res.status(200).json(hours);
@@ -91,4 +91,4 @@ const unapproveHour = async (req, res) => {
   }
 }
 
-module.exports = { getAllHours, approveHour, unapproveHour, getUnapprovedUsers, approveUser, unapproveUser }
+module.exports = { getAllUnapprovedHours, approveHour, unapproveHour, getUnapprovedUsers, approveUser, unapproveUser }
