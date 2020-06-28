@@ -3,7 +3,8 @@ const initialState = {
   total: null,
   pending: null,
   allHours: [],
-  unapprovedUsers: []
+  unapprovedUsers: [],
+  approvedUsers: []
 }
 
 export const adminReducer = (state = initialState, action) => {

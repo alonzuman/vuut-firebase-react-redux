@@ -11,8 +11,6 @@ export default function StatsBox({ stats, isLoading }) {
     backgroundColor: colors.boxBackground,
   }
 
-  console.log(stats)
-
   return (
     <ul className='stats-list box-background' style={style}>
       {isLoading && <Spinner padding={false} />}

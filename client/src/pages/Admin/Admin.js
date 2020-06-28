@@ -3,7 +3,7 @@ import Spinner from '../../components/Spinner/Spinner';
 import { Link, Redirect } from 'react-router-dom';
 import Topbar from '../../components/Topbar/Topbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllUnapprovedHours } from '../../actions';
+import { getAllUnapprovedHours, getAllUnapprovedUsers } from '../../actions';
 import Navbar from '../../components/Navbar/Navbar';
 import StatsBox from '../../components/Stats/StatsBox';
 
@@ -11,7 +11,7 @@ export default function Admin() {
   const dispatch = useDispatch();
   const { colors } = useSelector(state => state.theme)
   const { isAdmin, token } = useSelector(state => state.auth)
-  const { total, isLoading , pending, allHours } = useSelector(state => state.admin)
+  const { total, isLoading, pending, allHours, unapprovedUsers, approvedUsers } = useSelector(state => state.admin)
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
@@ -37,12 +37,12 @@ export default function Admin() {
   ]
 
   const stat3 = {
-    stat: 238,
+    stat: approvedUsers.length,
     label: 'Total'
   }
 
   const stat4 = {
-    stat: 199,
+    stat: unapprovedUsers.length,
     label: 'Pending'
   }
 
