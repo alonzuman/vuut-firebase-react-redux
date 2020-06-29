@@ -10,6 +10,7 @@ export default function UserCard({ user }) {
   const [isAdmin, setIsAdmin] = useState(user.isAdmin);
   const dispatch = useDispatch();
   const { colors } = useSelector(state => state.theme);
+  const { translation } = useSelector(state => state.locale);
 
   const handleClick = () => {
     setIsApproved(!isApproved);
@@ -24,12 +25,12 @@ export default function UserCard({ user }) {
 
   const stat1 = {
     stat: user.total,
-    label: 'Total'
+    label: translation.total
   }
 
   const stat2 = {
     stat: user.pending,
-    label: 'Pending'
+    label: translation.pendingApproval
   }
 
   const stats = [stat1, stat2]
@@ -49,11 +50,11 @@ export default function UserCard({ user }) {
         <div>
           {isApproved && !isAdmin && <button className='btn btn-primary'>Make Admin</button>}
           {isApproved ?
-            <button style={{ margin: '2px 0' }} className='btn secondary-button' onClick={handleClick}>Unapprove</button> :
+            <button style={{ margin: '2px 0' }} className='btn btn-secondary' onClick={handleClick}>Unapprove</button> :
             <button className='btn btn-primary' onClick={handleClick}>Approve</button>}
         </div>}
         <div className='user-card-footer'>
-          {isOpen ? <button onClick={() => setIsOpen(!isOpen)} className='btn' style={{ marginTop: '1rem' }}>Close Icon</button> : <button onClick={() => setIsOpen(!isOpen)}  className='btn' style={{marginTop: '1rem'}}>Expand Icon</button>}
+          {isOpen ? <button onClick={() => setIsOpen(!isOpen)} className='btn' style={{ marginTop: '1rem' }}><i class="fas fa-chevron-up"></i></button> : <button onClick={() => setIsOpen(!isOpen)} className='btn' style={{ marginTop: '1rem' }}><i className="fas fa-chevron-down"></i></button>}
         </div>
       </div>
     </div>

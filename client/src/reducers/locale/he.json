@@ -26,7 +26,7 @@
   "description": "תיאור",
   "startTime": "מועד התחלה",
   "endTime": "מועד סיום",
-  "areYouSure": "האם את/ה בטוח",
+  "areYouSure": "האם את/ה בטוח/ה",
   "approve": "אישור",
   "cancel": "ביטול",
   "adminPanel": "פאנל אדמין",
@@ -34,5 +34,8 @@
   "users": "מתנדבים",
   "all": "הכל",
   "hoursManagement": "ניהול שעות",
-  "usersManagement": "ניהול מתנדבים"
+  "decline": "ביטול",
+  "usersManagement": "ניהול מתנדבים",
+  "pleaseFillAllRequiredFields": "אנא הזינו את כל השדות",
+  "addedSuccessfully": "נוסף בהצלחה"
 }

@@ -5,7 +5,7 @@
   width: 100%;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 64px;
 }
 
 .topbar-menu {
@@ -14,6 +14,6 @@
   justify-content: space-between;
 }
 
-.topbar .secondary-button {
+.topbar .btn-secondary {
   margin-top: .5rem;
 }

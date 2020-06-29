@@ -63,9 +63,9 @@ export default function Home() {
       <Navbar />
       {!auth.isLoading && !isAuth && !token && <Redirect to='/signin' />}
       <div style={containerStyle} className='container'>
-        <h1 className='home-title'>{translation.home}</h1>
+        <h1 className='page-title'>{translation.home}</h1>
         <StatsBox stats={stats} isLoading={isLoading} />
-        <div className='category-title'><h2>{translation.myHours}</h2><Link to='/my-hours'><button className='secondary-button'>{translation.viewAll}</button></Link></div>
+        <div className='category-title'><h2>{translation.myHours}</h2><Link to='/my-hours'><button className='btn-secondary'>{translation.viewAll}</button></Link></div>
         <Menu isLoading={isLoading} options={options} />
       </div>
     </div>

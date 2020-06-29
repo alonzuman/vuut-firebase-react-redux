@@ -30,10 +30,9 @@ export default function MyHours() {
       <Topbar avatar={true}  backButton={true} />
       <Navbar />
       <div style={containerStyle} className='container'>
-        <div className='page-header'>
+        <div className='page-title'>
           <h1>{translation.myHours}</h1>
-          <button onClick={() => setIsEditing(!isEditing)} className='btn secondary-button'>{isEditing ? translation.close : translation.edit}</button>
-
+          <button onClick={() => setIsEditing(!isEditing)} className='btn btn-secondary'>{isEditing ? translation.close : translation.edit}</button>
         </div>
         {(myHours && !isLoading) ?
         <ul className='hours-grid'>{myHours.map(hour => <Hour isEditing={isEditing} hour={hour} key={Math.random()} />)}</ul>:

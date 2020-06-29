@@ -3,6 +3,11 @@
   margin: 0;
 }
 
+.admin-card-content {
+  display: flex;
+  justify-content: space-between;
+}
+
 .name-and-avatar {
   text-align: center;
 }
@@ -14,4 +19,9 @@
 
 .hours-and-description {
   margin-top: .5rem;
+}
+
+.admin-card-column {
+  margin: 0 1rem;
+  display: flex;
 }

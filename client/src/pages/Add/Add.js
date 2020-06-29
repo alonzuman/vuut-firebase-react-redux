@@ -8,6 +8,7 @@ import './Add.css'
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import Topbar from '../../components/Topbar/Topbar';
+import Navbar from '../../components/Navbar/Navbar';
 
 export default function Add() {
   const [hours, setHours] = useState('');
@@ -27,7 +28,7 @@ export default function Add() {
   const handleSubmit = e => {
     e.preventDefault();
     if (startDate.length <= 0 || description.length <= 0) {
-      dispatch(setAlert({ msg: 'Please fill all required fields', type: 'danger' }));
+      dispatch(setAlert({ msg: translation.pleaseFillAllRequiredFields, type: 'danger' }));
     } else {
       const newHour = {
         description,
@@ -59,18 +60,18 @@ export default function Add() {
   return (
     <div>
       <Topbar backButton={true} />
+      <Navbar />
       {type === 'success' && msg === 'Added successfully!' && <Redirect to='/' />}
       {!isLoading && !token &&!isAuth && <Redirect to='/signin' />}
       <div style={containerStyle} className='container'>
         {hoursState.isLoading && <Spinner />}
         {!hoursState.isLoading &&
         <Fragment>
-          <h1>{translation.addHours}</h1>
-          <br />
+          <h1 className='page-title'>{translation.addHours}</h1>
           <form onSubmit={handleSubmit}>
             <div className='form-group'>
               <label>{translation.description}</label>
-              <input style={inputStyle} className='form-control' type='text' value={description} onChange={e => setDescription(e.target.value)} />
+              <textarea maxlength='120' resize={false} rows='5' style={inputStyle} className='form-control' type='text' value={description} onChange={e => setDescription(e.target.value)} />
             </div>
             <div className='flex-form-group'>
               <div style={flexStyle} className='form-group flex-group'>

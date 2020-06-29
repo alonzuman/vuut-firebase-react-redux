@@ -58,12 +58,12 @@ export default function Admin() {
       <Topbar avatar={true}  themeToggle={true}/>
       <Navbar />
     <div style={containerStyle} className='container'>
-      <h1 className='home-title'>{translation.adminPanel}</h1>
+      <h1 className='page-title'>{translation.adminPanel}</h1>
       {!token && <Redirect to='/signin' />}
       {!isLoading && !isAdmin && !allHours && <Redirect to='/' />}
-      <div className='category-title'><h2>{translation.hours}</h2><Link to='/admin/all-hours'><button className='secondary-button'>{translation.viewAll}</button></Link></div>
+      <div className='category-title'><h2>{translation.hours}</h2><Link to='/admin/all-hours'><button className='btn-secondary'>{translation.viewAll}</button></Link></div>
       <StatsBox stats={hoursStats} isLoading={isLoading} />
-      <div className='category-title'><h2>{translation.users}</h2><Link to='/admin/all-users'><button className='secondary-button'>{translation.viewAll}</button></Link></div>
+      <div className='category-title'><h2>{translation.users}</h2><Link to='/admin/all-users'><button className='btn-secondary'>{translation.viewAll}</button></Link></div>
       <StatsBox stats={userStats} isLoading={isLoading} />
     </div>
     </Fragment>

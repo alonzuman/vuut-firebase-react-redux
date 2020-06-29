@@ -29,26 +29,41 @@ export default function AdminHourCard({ details, id }) {
     dispatch(unapproveHour(id, details.hours))
   }
 
+  const infoStyle = {
+    margin: direction === 'rtl' ? '0 0 1rem 1rem' : '0 1rem 1rem 0'
+  }
+
   return (
     <div style={boxStyle} className='admin-card-container box-background'>
       {!details && <Spinner />}
       {details && <Fragment>
-        <div className='admin-card-header'>
+        <div className='admin-card-content'>
           <div className='name-and-avatar'>
             <img className='avatar' style={avatarStyle} src={details.user.avatar || 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU'} />
             <div><small>{details.user.firstName} {details.user.lastName}</small></div>
           </div>
-          <small>{details.date}</small>
+          <div className='hours-and-description'>
+            <div className='admin-card-column' style={{direction}}>
+              <div style={infoStyle}>
+                <small><b>{translation.startTime}</b></small>
+                <p>{details.startDate}</p>
+              </div>
+              <div style={infoStyle}>
+                <small><b>{translation.endTime}</b></small>
+                <p>{details.endDate}</p>
+              </div>
+            </div>
+            <div className='admin-card-column' style={{ direction }}>
+              <div style={infoStyle}>
+                <p><b>{translation.description}</b></p>
+                <p>{details.description}</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className='hours-and-description'>
-          <p><b>Hours: </b>{details.hours}</p>
-          <p><b>Description: </b>{details.description}</p>
-        </div>
-        <div className='admin-card-footer'>
-          {!isApproved ?
-          <button className='btn btn-primary' onClick={handleApprove}>Approve</button >:
-          <button style={{width: '100%', margin: '.5rem 0', height: '34px'}} className='btn secondary-button' onClick={handleUnapprove}>Decline</button>}
-        </div>
+        {!isApproved ?
+        <button className='btn btn-primary' onClick={handleApprove}>{translation.approve}</button >:
+          <button style={{ width: '100%', margin: '.5rem 0', height: '34px' }} className='btn btn-secondary' onClick={handleUnapprove}>{translation.decline}</button>}
       </Fragment>}
     </div>
   )

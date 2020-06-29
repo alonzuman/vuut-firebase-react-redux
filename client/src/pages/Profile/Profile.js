@@ -29,7 +29,7 @@ export default function Profile() {
       <Fragment>
         <img className='avatar big' src={user.avatar ? user.avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU'} />
         <h1>{translation.hi}, {user.firstName}</h1>
-        <button className='btn secondary-button' onClick={() => dispatch(logout())}>{translation.logout}</button>
+        <button className='btn btn-secondary' onClick={() => dispatch(logout())}>{translation.logout}</button>
       </Fragment>}
     </div>
   )

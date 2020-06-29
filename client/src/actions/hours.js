@@ -30,7 +30,8 @@ export const addHour = (hour) => async dispatch => {
       }
     }
     const res = await axios.post(`/api/hours`, hour, config);
-    if (res.data.msg === 'added successfully!') {
+    console.log(res.status)
+    if (res.status === 201) {
       dispatch(setAlert({ msg: 'Added successfully!', type: 'success' }));
       dispatch({
         type: 'HOURS_ADDED',

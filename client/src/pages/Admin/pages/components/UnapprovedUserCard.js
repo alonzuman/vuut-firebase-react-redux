@@ -29,7 +29,7 @@ export default function UnapprovedUserCard({ user, id }) {
         </div>
         <div><small>{dateCreated}</small></div>
       </div>
-      {isApproved ? <button style={{margin: 0}} className='btn secondary-button' onClick={handleUnapprove}>Unapprove</button> : <button style={{margin: 0}} className='btn btn-primary' onClick={handleApprove}>Approve</button>}
+      {isApproved ? <button style={{ margin: 0 }} className='btn btn-secondary' onClick={handleUnapprove}>Unapprove</button> : <button style={{margin: 0}} className='btn btn-primary' onClick={handleApprove}>Approve</button>}
     </div>
   )
 }

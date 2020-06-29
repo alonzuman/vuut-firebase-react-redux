@@ -16,7 +16,7 @@ export default function ApprovalPopup({ approve, cancel }) {
       <div style={textBoxStyle} className='text-box'>
         <h3>{translation.areYouSure}?</h3>
         <button style={{width: 'auto'}} className='btn btn-primary' onClick={approve}>{translation.approve}</button>
-        <button className='btn secondary-button' onClick={cancel}>{translation.cancel}</button>
+        <button className='btn btn-secondary' onClick={cancel}>{translation.cancel}</button>
       </div>
     </div>
   )
