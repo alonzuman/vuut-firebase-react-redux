@@ -175,6 +175,10 @@ input, button:focus {
   margin-top: .5rem;
 }
 
+small {
+  font-size: .75rem;
+}
+
 @media (min-width: 500px) {
   .btn {
     width: auto;

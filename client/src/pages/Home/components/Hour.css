@@ -3,6 +3,10 @@
   display: flex;
 }
 
+.card-container i {
+  margin: .4rem 0 0 .4rem;
+}
+
 .hour-card {
   justify-content: space-between;
 }
@@ -33,4 +37,9 @@
 .hour-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.admin-card-column small {
+  font-size: .75rem;
+  margin-top: .2rem;
 }

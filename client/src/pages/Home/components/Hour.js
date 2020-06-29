@@ -25,7 +25,8 @@ export default function Hour({ hour, isEditing }) {
   }
 
   const infoStyle = {
-    margin: direction === 'rtl' ? '0 0 1rem 1rem' : '0 1rem 1rem 0'
+    margin: direction === 'rtl' ? '0 0 1rem 1rem' : '0 1rem 1rem 0',
+    textAlign: 'center'
   }
 
   return (
@@ -33,26 +34,24 @@ export default function Hour({ hour, isEditing }) {
       {!hour && <Spinner />}
       {data && <div style={hourStyle} className='card-container box-background hour-card'>
         {isDeleting && <ApprovalPopup approve={() => dispatch(deleteHour({id, hours: data.hours}))} cancel={() => setIsDeleting(false)} />}
-        <div className='admin-card-content'>
-          <div className='hours-and-description'>
+          <div>
             <div className='admin-card-column' style={{ direction }}>
               <div style={infoStyle}>
-                <small><b>{translation.startTime}</b></small>
-                <p>{data.startDate}</p>
+                <small><b>{translation.startTime}</b></small><br />
+                <small>{data.startDate}</small>
               </div>
               <div style={infoStyle}>
-                <small><b>{translation.endTime}</b></small>
-                <p>{data.endDate}</p>
+                <small><b>{translation.hours}</b></small><br />
+                <small>{data.hours}</small>
               </div>
             </div>
             <div className='admin-card-column' style={{ direction }}>
               <div style={infoStyle}>
-                <p><b>{translation.description}</b></p>
+                <small><b>{translation.description}</b></small>
                 <p>{data.description}</p>
               </div>
             </div>
           </div>
-        </div>
           {isEditing ?
             <i onClick={() => setIsDeleting(true)} style={{ color: 'rgb(255, 69, 58)', fontSize: '1.3rem'}} className="fas fa-trash"></i>:
           !data.approved ? <i style={iconStyle} className="orange button-icon fas fa-hourglass"></i> : <i style={iconStyle} className="green button-icon fas fa-check"></i>}

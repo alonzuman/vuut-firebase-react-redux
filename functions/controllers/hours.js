@@ -14,18 +14,31 @@ const getMyHours = async (req, res) => {
 }
 
 const addHour = async (req, res) => {
+  const {
+    description,
+    startDate,
+    endDate,
+    hours,
+  } = req.body
+
+  const {
+    firstName,
+    lastName,
+    avatar,
+    userId
+  } = req.user
+
   const newHour = {
-    description: req.body.description,
-    startDate: req.body.startDate,
-    startHour: req.body.startHour,
-    endDate: req.body.endDate,
-    endHour: req.body.endHour,
+    description,
+    startDate,
+    endDate,
+    hours,
     approved: false,
     user: {
-      firstName: req.user.firstName || '',
-      lastName: req.user.lastName || '',
-      avatar: req.user.avatar || '',
-      id: req.user.userId
+      firstName,
+      lastName,
+      avatar: avatar || '',
+      id: userId
     },
     dateCreated: admin.firestore.Timestamp.fromDate(new Date())
   };
