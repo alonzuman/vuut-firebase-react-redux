@@ -29,7 +29,7 @@ export default function Home() {
     label: translation.total,
     link: '/my-hours',
     stat: user.total,
-    border: true
+    isFirst: true
   }
 
   const option2 = {
@@ -37,7 +37,7 @@ export default function Home() {
     label: translation.pendingApproval,
     link: '/my-hours',
     stat: user.pending,
-    border: false
+    isLast: true
   }
 
   const options = [
