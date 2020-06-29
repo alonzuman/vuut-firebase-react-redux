@@ -1,25 +1,36 @@
-import React, { useEffect, Fragment } from 'react';
-import UnapprovedUserCard from './components/UnapprovedUserCard';
+import React, { useEffect, Fragment, useState } from 'react';
+import './AllUsers.css';
 import Topbar from '../../../components/Topbar/Topbar';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllUnapprovedUsers } from '../../../actions'
+import { queryUsers } from '../../../actions'
 import Spinner from '../../../components/Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
+import UsersList from './components/UsersList';
 
-export default function AllHours() {
-  const { unapprovedUsers, isLoading } = useSelector(state => state.admin)
+export default function AllUsers() {
+  const [tab, setTab] = useState('all');
+  const { isLoading } = useSelector(state => state.admin)
   const auth = useSelector(state => state.auth);
   const { colors } = useSelector(state => state.theme);
   const { token, isAuth, isAdmin } = auth;
+  const { direction, translation } = useSelector(state => state.locale);
+
   const dispatch = useDispatch();
+
+  const handleChange = (newTab) => {
+    setTab(newTab);
+    dispatch(queryUsers(newTab));
+  }
+
+
+  useEffect(() => { dispatch(queryUsers(tab)) }, [])
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
-    color: colors.headers
+    color: colors.headers,
+    direction
   }
-
-  useEffect(() => { dispatch(getAllUnapprovedUsers()) }, [])
 
   return (
     <div>
@@ -27,13 +38,11 @@ export default function AllHours() {
       <Navbar />
       <Topbar avatar={true}  backButton={true} />
       <div style={containerStyle} className='container'>
-        <h1>New Users</h1>
+        <h1>{translation.usersManagement}</h1>
+        <button className={`tab`} onClick={() => handleChange('all')}>{translation.all}</button>
+        <button className={`tab`} onClick={() => handleChange('unapproved')}>{translation.pendingApproval}</button>
         {isLoading && <Spinner />}
-        {!isLoading &&
-        <ul className='hours-grid'>
-          {unapprovedUsers.map(x => <UnapprovedUserCard user={x.user} key={x.id} id={x.id}/>)}
-          {unapprovedUsers.length === 0 && <p>No new users to approve</p>}
-        </ul>}
+        {!isLoading && <UsersList type={tab} />}
       </div>
     </div>
   )

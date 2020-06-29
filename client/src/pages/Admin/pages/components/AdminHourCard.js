@@ -7,14 +7,16 @@ import { approveHour, unapproveHour } from '../../../../actions/admin';
 export default function AdminHourCard({ details, id }) {
   const dispatch = useDispatch();
   const [isApproved, setIsApproved] = useState(details.approved)
-  const { colors } = useSelector(state => state.theme)
+  const { colors } = useSelector(state => state.theme);
+  const { direction, translation } = useSelector(state => state.locale);
 
   const avatarStyle = {
     border: colors.border
   }
 
   const boxStyle = {
-    backgroundColor: colors.boxBackground
+    backgroundColor: colors.boxBackground,
+    direction: 'ltr'
   }
 
   const handleApprove = () => {

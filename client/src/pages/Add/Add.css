@@ -1,6 +1,10 @@
+.flex-group {
+  width: 10rem;
+}
+
 .flex-form-group {
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .flex-group:first-child {
@@ -44,4 +48,10 @@
 .react-datepicker__day--selected {
   background-color: var(--primary)!important;
   border-radius: 50%!important;
+}
+
+@media (max-width: 360px) {
+  .flex-form-group {
+    flex-direction: column;
+  }
 }

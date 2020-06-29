@@ -8,7 +8,7 @@ export default function MenuItem({ option }) {
   const { link, icon, label, stat, border } = option;
 
   const style = {
-    backgroundColor: isHover ? colors.backgroundDark : colors.boxBackground,
+    backgroundColor: isHover ? colors.backgroundDarkHover : colors.boxBackground,
     color: colors.text,
     borderBottom: border ? `${colors.border}` : ''
   }
@@ -20,7 +20,7 @@ export default function MenuItem({ option }) {
           <i className={icon}></i>
           <p>{label}</p>
         </div>
-        <p>{stat}</p>
+        <p>{stat ? stat : 0}</p>
       </li>
     </Link>
   )

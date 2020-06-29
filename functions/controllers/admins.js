@@ -2,12 +2,26 @@ const { db } = require('../utils/admin');
 const hoursRef = db.collection('hours');
 const usersRef = db.collection('users');
 
+const getAllUsers = async (req, res) => {
+  try {
+    const snapshot = await usersRef.where('isApproved', '==', true).get();
+    let users = [];
+    snapshot.forEach(doc => users.push({ id: doc.id, details: doc.data()}));
+    res.status(200).json(users)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: 'server error'
+    })
+  }
+}
+
 const getAllUnapprovedHours = async (req, res) => {
-  if (req.user.isAdmin) {
+  if (req.user.role === 'admin' || req.user.role === 'moderator') {
     try {
-      const data = await db.collection('hours').where('approved', '==', false).get()
+      const snapshot = await hoursRef.where('approved', '==', false).get()
       let hours = [];
-      data.forEach(doc => hours.push({ id: doc.id, details: doc.data()}));
+      snapshot.forEach(doc => hours.push({ id: doc.id, details: doc.data()}));
       res.status(200).json(hours);
     } catch (error) {
       res.status(500).json(error);
@@ -21,10 +35,10 @@ const getAllUnapprovedHours = async (req, res) => {
 
 const getUnapprovedUsers = async (req, res) => {
   try {
-    const data = await usersRef.where('isApproved', '==', false).get();
+    const snapshot = await usersRef.where('isApproved', '==', false).get();
     let users = [];
-    data.forEach(doc => {
-      users.push({ id: doc.id, user: doc.data() })
+    snapshot.forEach(doc => {
+      users.push({ id: doc.id, details: doc.data() })
     });
     res.status(200).json(users);
   } catch (error) {
@@ -48,7 +62,23 @@ const approveUser = async (req, res) => {
   }
 }
 
+const changeRole = async (req, res) => {
+  const id = req.body.id;
+  const newRole = req.body.role;
+  try {
+    await usersRef.doc(id).update({ role: newRole });
+    res.status(201).json({
+      msg: `user ${id} unapproved`
+    })
+  } catch (error) {
+    res.status(500).json({
+      msg: 'server error'
+    })
+  }
+}
+
 const unapproveUser = async (req, res) => {
+  const id = req.params.id;
   try {
     await usersRef.doc(id).update({ isApproved: false });
     res.status(201).json({
@@ -91,4 +121,4 @@ const unapproveHour = async (req, res) => {
   }
 }
 
-module.exports = { getAllUnapprovedHours, approveHour, unapproveHour, getUnapprovedUsers, approveUser, unapproveUser }
+module.exports = { getAllUnapprovedHours, approveHour, unapproveHour, getUnapprovedUsers, approveUser, unapproveUser, getAllUsers }

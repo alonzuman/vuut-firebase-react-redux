@@ -46,14 +46,26 @@ export const getAllUnapprovedHours = () => async dispatch => {
   }
 }
 
-export const getAllUnapprovedUsers = () => async dispatch => {
+export const queryUsers = (type) => async dispatch => {
+  dispatch({
+    type: 'ADMIN_LOADING'
+  })
   try {
-    const res = await axios.get('api/admin/users/unapproved');
+    const config = {
+      headers: {
+        'Content-Type': 'pplication/json',
+        'auth-token': localStorage.getItem('token'),
+      }
+    }
+    const res = await axios.get(`api/admin/users/${type}`, config);
+    console.log(res.data);
+
     dispatch({
-      type: 'SET_UNAPPROVED_USERS',
+      type: 'SET_USERS',
       payload: res.data
     })
   } catch (error) {
+    console.log(error);
     dispatch(setAlert({
       msg: 'Server error, please refresh the page and try again',
       type: 'danger'

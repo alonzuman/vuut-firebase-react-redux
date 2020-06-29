@@ -7,15 +7,17 @@ import Topbar from '../../components/Topbar/Topbar';
 
 export default function Profile() {
   const dispatch = useDispatch();
-  const { token, isAuth, isLoading, user } = useSelector(state => state.auth)
-  const { colors } = useSelector(state => state.theme)
+  const { token, isAuth, isLoading, user } = useSelector(state => state.auth);
+  const { colors } = useSelector(state => state.theme);
+  const { direction, translation } = useSelector(state => state.locale);
 
   useEffect(() => { loadUser() }, [])
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
     color: colors.headers,
-    textAlign: 'center'
+    textAlign: 'center',
+    direction
   }
 
   return (
@@ -26,8 +28,8 @@ export default function Profile() {
       {!isLoading &&
       <Fragment>
         <img className='avatar big' src={user.avatar ? user.avatar : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRZQskwLv2d6lQtlyiij1TJo9AKcNQFM3juig&usqp=CAU'} />
-        <h1>Hi, {user.firstName}</h1>
-        <button className='btn secondary-button' onClick={() => dispatch(logout())}>Log Out</button>
+        <h1>{translation.hi}, {user.firstName}</h1>
+        <button className='btn secondary-button' onClick={() => dispatch(logout())}>{translation.logout}</button>
       </Fragment>}
     </div>
   )

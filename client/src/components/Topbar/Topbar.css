@@ -1,15 +1,19 @@
 .topbar {
-  padding: 1rem 1rem .5rem 1rem;
+  padding: .5rem 1rem 0rem 1rem;
   position: fixed;
   top: 0;
   width: 100%;
   left: 0;
   right: 0;
-  min-height: 72px;
+  height: 72px;
 }
 
 .topbar-menu {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.topbar .secondary-button {
+  margin-top: .5rem;
 }

@@ -11,6 +11,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch()
+  const { direction, translation } = useSelector(state => state.locale);
   const { isLoading, isAuth } = useSelector(state => state.auth)
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
@@ -29,7 +30,8 @@ export default function SignUp() {
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
-    color: colors.headers
+    color: colors.headers,
+    direction
   }
 
   return (
@@ -39,29 +41,29 @@ export default function SignUp() {
       {!isLoading &&
       <Fragment>
         <form onSubmit={handleSignin}>
-        <h1 style={{marginBottom: '1rem'}}>Sign Up</h1>
+        <h1 style={{marginBottom: '1rem'}}>{translation.signUp}</h1>
         <div className='form-group'>
-          <label>Email Address</label>
+          <label>{translation.emailAddress}</label>
           <input style={inputStyle} required placeholder='johndoe@gmail.com' className='form-control' type='email' value={email} onChange={e => setEmail(e.target.value)} />
         </div>
         <div className='form-group'>
-          <label>First Name</label>
+          <label>{translation.firstName}</label>
           <input style={inputStyle} required placeholder='John' className='form-control' type='text' value={firstName} onChange={e => setFirstName(e.target.value)} />
         </div>
         <div className='form-group'>
-          <label>Last Name</label>
+          <label>{translation.lastName}</label>
           <input style={inputStyle} required placeholder='Doe' className='form-control' type='text' value={lastName} onChange={e => setLastName(e.target.value)} />
         </div>
         <div className='form-group'>
-          <label>Password</label>
+          <label>{translation.password}</label>
           <input style={inputStyle} required placeholder='••••••' className='form-control' type='password' value={password} onChange={e => setPassword(e.target.value)} />
         </div>
         <div className='form-group'>
-          <label>Confirm Password</label>
+          <label>{translation.confirmPassword}</label>
           <input style={inputStyle} required placeholder='••••••' className='form-control' type='password' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
         </div>
-        <button className='btn btn-primary'>Sign In</button>
-        <p style={{marginTop: '1rem'}}>Already have an account? <Link to='/signin'>Sign in</Link></p>
+        <button className='btn btn-primary'>{translation.signUp}</button>
+        <p style={{marginTop: '1rem'}}>{translation.alreadyHaveAnAccount}? <Link to='/signin'>{translation.signIn}</Link></p>
         </form>
       </Fragment>}
     </div>

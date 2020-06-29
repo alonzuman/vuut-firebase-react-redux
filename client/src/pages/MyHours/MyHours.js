@@ -13,6 +13,7 @@ export default function MyHours() {
   const [isEditing, setIsEditing] = useState(false);
   const { myHours, isLoading } = useSelector(state => state.hours);
   const { colors } = useSelector(state => state.theme);
+  const { direction, translation } = useSelector(state => state.locale);
 
   useEffect(() => {
     dispatch(getMyHours());
@@ -20,7 +21,8 @@ export default function MyHours() {
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
-    color: colors.headers
+    color: colors.headers,
+    direction
   }
 
   return (
@@ -29,14 +31,15 @@ export default function MyHours() {
       <Navbar />
       <div style={containerStyle} className='container'>
         <div className='page-header'>
-          <h1>My Hours</h1>
-          <button onClick={() => setIsEditing(!isEditing)} className='btn secondary-button'>{isEditing ? 'Close' : 'Edit'}</button>
+          <h1>{translation.myHours}</h1>
+          <button onClick={() => setIsEditing(!isEditing)} className='btn secondary-button'>{isEditing ? translation.close : translation.edit}</button>
 
         </div>
         {(myHours && !isLoading) ?
         <ul className='hours-grid'>{myHours.map(hour => <Hour isEditing={isEditing} hour={hour} key={Math.random()} />)}</ul>:
         <Spinner />}
-        {!isLoading && myHours.length === 0 && <p>No hours yet, <Link to='/add'>add your first</Link></p>}
+        <br />
+        {!isLoading && myHours.length === 0 && <p>{translation.noHoursYet}, <Link to='/add'>{translation.addYourHours}</Link></p>}
       </div>
     </Fragment>
   )

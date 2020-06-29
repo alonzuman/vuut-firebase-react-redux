@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getMyHours, addHour, removeHour } = require('../controllers/hours');
 const { signup, signin, loadUser } = require('../controllers/users');
-const { getAllUnapprovedHours, getUnapprovedUsers, approveHour, unapproveHour, unapproveUser, approveUser } = require('../controllers/admins');
+const { getAllUnapprovedHours, getUnapprovedUsers, approveHour, unapproveHour, unapproveUser, approveUser, getAllUsers } = require('../controllers/admins');
 const auth = require('../middleware/auth');
 
 // Hours
@@ -19,10 +19,11 @@ router.post('/signup', signup)
 // TODO
 // Admin routes
 router.get('/admin/all', auth, getAllUnapprovedHours)
-      .get('/admin/users/unapproved', getUnapprovedUsers) //TODO add auth
-      .put('/admin/hours/:id/approve', approveHour)
-      .put('/admin/hours/:id/unapprove', unapproveHour)
-      .put('/admin/users/:id/approve', approveUser)
-      .put('/admin/users/:id/unapprove', unapproveUser)
+      .get('/admin/users/all', auth, getAllUsers) //TODO add auth
+      .get('/admin/users/unapproved', auth, getUnapprovedUsers) //TODO add auth
+      .put('/admin/hours/:id/approve', auth, approveHour)
+      .put('/admin/hours/:id/unapprove', auth, unapproveHour)
+      .put('/admin/users/:id/approve', auth, approveUser)
+      .put('/admin/users/:id/unapprove', auth, unapproveUser)
 
 module.exports = router;

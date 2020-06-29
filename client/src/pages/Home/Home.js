@@ -14,17 +14,19 @@ export default function Home() {
   const { isAuth, token, user, isLoading } = useSelector(state => state.auth);
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
+  const { direction, translation } = useSelector(state => state.locale);
 
   useEffect(() => { dispatch(loadUser()) }, [])
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
     color: colors.headers,
+    direction
   }
 
   const option1 = {
     icon: 'green button-icon fas fa-check',
-    label: 'total',
+    label: translation.total,
     link: '/my-hours',
     stat: user.total,
     border: true
@@ -32,7 +34,7 @@ export default function Home() {
 
   const option2 = {
     icon: 'orange button-icon fas fa-hourglass',
-    label: 'pending',
+    label: translation.pendingApproval,
     link: '/my-hours',
     stat: user.pending,
     border: false
@@ -45,12 +47,12 @@ export default function Home() {
 
   const stat1 = {
     stat: `${user.total} / 100`,
-    label: 'Total'
+    label: translation.total
   }
 
   const stat2 = {
     stat: user.pending,
-    label: 'Pending Approval'
+    label: translation.pendingApproval
   }
 
   const stats = [stat1, stat2]
@@ -61,9 +63,9 @@ export default function Home() {
       <Navbar />
       {!auth.isLoading && !isAuth && !token && <Redirect to='/signin' />}
       <div style={containerStyle} className='container'>
-        <h1 className='home-title'>Home</h1>
+        <h1 className='home-title'>{translation.home}</h1>
         <StatsBox stats={stats} isLoading={isLoading} />
-        <div className='category-title'><h2>My Hours</h2><Link to='/my-hours'><button className='secondary-button'>View All</button></Link></div>
+        <div className='category-title'><h2>{translation.myHours}</h2><Link to='/my-hours'><button className='secondary-button'>{translation.viewAll}</button></Link></div>
         <Menu isLoading={isLoading} options={options} />
       </div>
     </div>

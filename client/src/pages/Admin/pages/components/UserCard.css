@@ -1,0 +1,18 @@
+.user-card {
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.user-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.avatar-and-name {
+  text-align: center;
+}
+
+.user-card-footer {
+  text-align: center;
+}

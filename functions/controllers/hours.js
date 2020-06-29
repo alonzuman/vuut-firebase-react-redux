@@ -16,8 +16,10 @@ const getMyHours = async (req, res) => {
 const addHour = async (req, res) => {
   const newHour = {
     description: req.body.description,
-    hours: parseInt(req.body.hours),
-    date: req.body.date,
+    startDate: req.body.startDate,
+    startHour: req.body.startHour,
+    endDate: req.body.endDate,
+    endHour: req.body.endHour,
     approved: false,
     user: {
       firstName: req.user.firstName || '',
@@ -28,7 +30,7 @@ const addHour = async (req, res) => {
     dateCreated: admin.firestore.Timestamp.fromDate(new Date())
   };
 
-  if (req.user.isApproved === true || req.user.isAdmin === true) {
+  if (req.user.role === 'user' || req.user.role === 'moderator' || req.user.role === 'admin') {
     try {
       const data = await hoursRef.add(newHour);
       await usersRef.doc(req.user.id).update({

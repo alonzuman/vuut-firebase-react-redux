@@ -9,6 +9,7 @@ export default function StatsBox({ stats, isLoading }) {
 
   const style = {
     backgroundColor: colors.boxBackground,
+    direction: 'ltr'
   }
 
   return (

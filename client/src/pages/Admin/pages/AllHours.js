@@ -8,7 +8,8 @@ import { Redirect } from 'react-router-dom';
 import Navbar from '../../../components/Navbar/Navbar';
 
 export default function AllHours() {
-  const { allHours, isLoading } = useSelector(state => state.admin)
+  const { allHours, isLoading } = useSelector(state => state.admin);
+  const { direction, translation } = useSelector(state => state.locale);
   const auth = useSelector(state => state.auth);
   const { token, isAuth, isAdmin } = auth;
   const { colors } = useSelector(state => state.theme);
@@ -16,7 +17,8 @@ export default function AllHours() {
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
-    color: colors.headers
+    color: colors.headers,
+    direction
   }
 
   useEffect(() => { dispatch(getAllUnapprovedHours()) }, [])
@@ -27,7 +29,7 @@ export default function AllHours() {
       <Navbar />
       {!auth.isLoading && !isAdmin && !isAuth && !token && <Redirect to='/signin' />}
       <div style={containerStyle} className='container'>
-        <h1>All Hours</h1>
+        <h1>{translation.hoursManagement}</h1>
         <ul className='hours-grid' style={{marginTop: '1rem'}}>
           {isLoading && <Spinner />}
           {!isLoading && <Fragment>

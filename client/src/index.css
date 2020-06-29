@@ -89,6 +89,8 @@ label {
   border-radius: 50%;
   width: 42px;
   height: 42px;
+  padding: .25rem;
+  margin: .25rem;
 }
 
 .medium {
@@ -129,8 +131,9 @@ input, button:focus {
 }
 
 .button-icon {
-  margin: 0 .7rem 0 0;
+  margin: 0 .7rem 0 .7rem;
   font-size: 1.3rem;
+  width: 1.3rem;
 }
 
 .secondary-button {

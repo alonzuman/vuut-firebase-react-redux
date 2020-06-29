@@ -9,6 +9,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch()
   const { isAuth, isLoading } = useSelector(state => state.auth);
+  const { direction, translation } = useSelector(state => state.locale);
   const theme = useSelector(state => state.theme);
   const { colors } = theme;
 
@@ -26,7 +27,8 @@ export default function SignIn() {
 
   const containerStyle = {
     backgroundColor: colors.backgroundDark,
-    color: colors.headers
+    color: colors.headers,
+    direction
   }
 
   return (
@@ -36,17 +38,17 @@ export default function SignIn() {
       {!isLoading && !isAuth &&
       <div>
         <form onSubmit={handleSignin}>
-          <h1 style={{ marginBottom: '1rem' }}>Sign In</h1>
+          <h1 style={{ marginBottom: '1rem' }}>{translation.signIn}</h1>
           <div className='form-group'>
-            <label>Email Address</label>
+            <label>{translation.emailAddress}</label>
             <input style={inputStyle} required placeholder='johndoe@gmail.com' className='form-control' type='email' value={email} onChange={e => setEmail(e.target.value)} />
           </div>
           <div className='form-group'>
-            <label>Password</label>
+            <label>{translation.password}</label>
             <input style={inputStyle} required placeholder='••••••••' className='form-control' type='password' value={password} onChange={e => setPassword(e.target.value)} />
           </div>
-          <button className='btn btn-primary'>Sign In</button>
-          <p style={{marginTop: '1rem'}}>Don't have an account? <Link to='/signup'>Sign up</Link></p>
+          <button className='btn btn-primary'>{translation.signIn}</button>
+          <p style={{marginTop: '1rem'}}>{translation.dontHaveAnAccount}? <Link to='/signup'>{translation.signUp}</Link></p>
         </form>
         </div>}
     </div>

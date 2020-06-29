@@ -1,5 +1,6 @@
 {
   "dark": {
+    "backgroundDarkHover": "#3e3e3e",
     "backgroundDark": "#111111",
     "background": "#202020",
     "gray": "#989899",
@@ -16,6 +17,7 @@
     "alertText": "white"
   },
   "light": {
+    "backgroundDarkHover": "#e2e2e2",
     "backgroundDark": "#efefef",
     "background": "white",
     "gray": "#989899",

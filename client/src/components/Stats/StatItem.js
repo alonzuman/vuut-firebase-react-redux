@@ -6,13 +6,13 @@ export default function StatItem({ stat, label }) {
   const { colors } = useSelector(state => state.theme);
 
   const style = {
-    backgroundColor: isHover ? colors.backgroundDark : colors.background,
+    backgroundColor: isHover ? colors.backgroundDarkHover : colors.background,
     minWidth: '5rem'
   }
 
   return (
     <li style={style} onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className='stats-item'>
-      <h1>{stat ? stat : '0'}</h1>
+      <h1>{stat ? stat : 0}</h1>
       <p className='stats-label'>{label}</p>
     </li>
   )
