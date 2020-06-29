@@ -4,7 +4,7 @@ const usersRef = db.collection('users');
 
 const getAllUsers = async (req, res) => {
   try {
-    const snapshot = await usersRef.where('isApproved', '==', true).get();
+    const snapshot = await usersRef.where('role', '==', 'user').get();
     let users = [];
     snapshot.forEach(doc => users.push({ id: doc.id, details: doc.data()}));
     res.status(200).json(users)
@@ -35,7 +35,7 @@ const getAllUnapprovedHours = async (req, res) => {
 
 const getUnapprovedUsers = async (req, res) => {
   try {
-    const snapshot = await usersRef.where('isApproved', '==', false).get();
+    const snapshot = await usersRef.where('role', '==', 'pending').get();
     let users = [];
     snapshot.forEach(doc => {
       users.push({ id: doc.id, details: doc.data() })
